@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="56dp"
+    android:height="56dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Guitar body with gradient -->
+    <path
+        android:pathData="M5,8C5,6.89 5.89,6 7,6H17C18.11,6 19,6.89 19,8V16C19,17.11 18.11,18 17,18H7C5.89,18 5,17.11 5,16V8ZM8,12C8,14.21 9.79,16 12,16C14.21,16 16,14.21 16,12C16,9.79 14.21,8 12,8C9.79,8 8,9.79 8,12ZM10,12C10,13.1 10.9,14 12,14C13.1,14 14,13.1 14,12C14,10.9 13.1,10 12,10C10.9,10 10,10.9 10,12Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="5"
+                android:startY="6"
+                android:endX="19"
+                android:endY="18"
+                android:startColor="#4A90E2"
+                android:endColor="#D94B92"/>
+        </aapt:attr>
+    </path>
+
+    <!-- Sound hole circle -->
+    <path
+        android:pathData="M12,12m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"
+        android:strokeWidth="0.5"
+        android:strokeColor="#80FFFFFF"/>
+
+    <!-- String details -->
+    <path
+        android:pathData="M8,12h8"
+        android:strokeWidth="0.5"
+        android:strokeColor="#80FFFFFF"/>
+    <path
+        android:pathData="M12,8v8"
+        android:strokeWidth="0.5"
+        android:strokeColor="#80FFFFFF"/>
+
+</vector>
+
+
+
+
+
+
+

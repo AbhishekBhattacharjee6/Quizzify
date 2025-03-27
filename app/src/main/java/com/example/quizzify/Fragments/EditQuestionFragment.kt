@@ -1,6 +1,7 @@
 package com.example.quizzify.Fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +9,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.example.quizzify.BottomNavBar.CustomBottomNavigation
 import com.example.quizzify.Firestore.FireStoreInstance
 import com.example.quizzify.QuizApplication
 import com.example.quizzify.R
+import com.google.android.material.textfield.TextInputEditText
 import javax.inject.Inject
 
 
@@ -29,11 +32,12 @@ class EditQuestionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_room, container, false)
+        return inflater.inflate(R.layout.edit_add_questions, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        (requireActivity() as QuizApplication).applicationComponent.injectEditQuestions(this)
+        requireActivity().findViewById<CustomBottomNavigation>(R.id.bottomNavigation).visibility = View.GONE
+        (requireActivity().application as QuizApplication).applicationComponent.injectEditQuestions(this)
         val QuestionId_Ref=FireStore.getFireStore().collection("LiveQuestions")
         super.onViewCreated(view, savedInstanceState)
         val question= arguments?.getString("Question")
@@ -42,17 +46,18 @@ class EditQuestionFragment : Fragment() {
         val wa2= arguments?.getString("WA2")
         val wa3= arguments?.getString("WA3")
         val QuestionId= arguments?.getString("QuizId")
-        val QuestionBody=view.findViewById<TextView>(R.id.Questions)
-        val CorrectAnswer=view.findViewById<TextView>(R.id.Option1)
-        val WrongAnswer1=view.findViewById<TextView>(R.id.Option2)
-        val WrongAnswer2=view.findViewById<TextView>(R.id.Option3)
-        val WrongAnswer3=view.findViewById<TextView>(R.id.Option4)
-        val Editbtn=view.findViewById<Button>(R.id.button5)
-        QuestionBody.text=question
-        CorrectAnswer.text=ca
-        WrongAnswer1.text=wa1
-        WrongAnswer2.text=wa2
-        WrongAnswer3.text=wa3
+        Log.d("QuestionId",QuestionId.toString())
+        val QuestionBody=view.findViewById<TextInputEditText>(R.id.questionInput)
+        val CorrectAnswer=view.findViewById<TextInputEditText>(R.id.correctOptionInput)
+        val WrongAnswer1=view.findViewById<TextInputEditText>(R.id.wrongOption1Input)
+        val WrongAnswer2=view.findViewById<TextInputEditText>(R.id.wrongOption2Input)
+        val WrongAnswer3=view.findViewById<TextInputEditText>(R.id.wrongOption3Input)
+        val Editbtn=view.findViewById<Button>(R.id.saveButton)
+        QuestionBody.setText(question)
+        CorrectAnswer.setText(ca)
+        WrongAnswer1.setText(wa1)
+        WrongAnswer2.setText(wa2)
+        WrongAnswer3.setText(wa3)
         Editbtn.setOnClickListener {
             val FetchedQuestion=QuestionBody.text.toString()
             val FetchedCA=CorrectAnswer.text.toString()
@@ -77,5 +82,10 @@ class EditQuestionFragment : Fragment() {
                 Toast.makeText(requireContext(),"Fill all the fields properly",Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        requireActivity().findViewById<CustomBottomNavigation>(R.id.bottomNavigation).visibility = View.VISIBLE
     }
 }

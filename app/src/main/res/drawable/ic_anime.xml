@@ -1,0 +1,125 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="56dp"
+    android:height="56dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Top Head Section -->
+    <path
+        android:fillColor="#4A4A4A"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M8,4L16,4L16,8L8,8z" />
+
+    <!-- V-Fin Left -->
+    <path
+        android:fillColor="#FF4444"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M4,6L8,8L10,4L8,5z" />
+
+    <!-- V-Fin Right -->
+    <path
+        android:fillColor="#FF4444"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M20,6L16,8L14,4L16,5z" />
+
+    <!-- Center Top -->
+    <path
+        android:fillColor="#FAFAFA"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M11,5A1,1 0,1 1,13 5A1,1 0,1 1,11 5z" />
+
+    <!-- Middle Head Section -->
+    <path
+        android:fillColor="#4A86E8"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M6,8L18,8L18,12L6,12z" />
+
+    <!-- Eyes Left -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M9,10A1,1 0,1 1,11 10A1,1 0,1 1,9 10z" />
+
+    <!-- Eyes Right -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M13,10A1,1 0,1 1,15 10A1,1 0,1 1,13 10z" />
+
+    <!-- Eye Highlights -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M9.5,9.5A0.5,0.5 0,1 1,10.5 9.5A0.5,0.5 0,1 1,9.5 9.5z M13.5,9.5A0.5,0.5 0,1 1,14.5 9.5A0.5,0.5 0,1 1,13.5 9.5z" />
+
+    <!-- Center Badge -->
+    <path
+        android:fillColor="#FFDD55"
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:pathData="M10,6L14,6L13,8L11,8z" />
+
+    <!-- Face Plate Top -->
+    <path
+        android:fillColor="#A06060"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M6,12L8,10L16,10L18,12L18,14L6,14z" />
+
+    <!-- Face Cheeks -->
+    <path
+        android:fillColor="#FFDD55"
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:pathData="M7,12L10,12L10,14L7,14z M14,12L17,12L17,14L14,14z" />
+
+    <!-- Lower Face Mask -->
+    <path
+        android:fillColor="#F5F5F5"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M7,14L17,14L16,18L8,18L7,14z" />
+
+    <!-- Face Details -->
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:pathData="M10,15L14,15 M9,16L15,16 M10,17L14,17" />
+
+    <!-- Left Side Panel -->
+    <path
+        android:fillColor="#B0C4DE"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M4,12L6,12L6,18L4,18z" />
+
+    <!-- Right Side Panel -->
+    <path
+        android:fillColor="#B0C4DE"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M18,12L20,12L20,18L18,18z" />
+
+    <!-- Side Details -->
+    <path
+        android:fillColor="#4A4A4A"
+        android:pathData="M5,13L5,14 M5,15L5,16 M5,17L5,18 M19,13L19,14 M19,15L19,16 M19,17L19,18" />
+
+    <!-- Center Lower Face -->
+    <path
+        android:fillColor="#4A4A4A"
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:pathData="M11,18L13,18L12,20L11,18z" />
+
+    <!-- Red Accents -->
+    <path
+        android:fillColor="#FF4444"
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:pathData="M8,14L10,14L9,18z M14,14L16,14L15,18z" />
+
+</vector>
+

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="12dp"
+        android:paddingHorizontal="8dp">
+
+        <!-- Practice Tab -->
+        <LinearLayout
+            android:id="@+id/practiceTab"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:id="@+id/practiceIndicator"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/nav_indicator_bg"
+                    android:visibility="invisible"/>
+
+                <ImageView
+                    android:id="@+id/practiceIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_practice"
+                    app:tint="@color/nav_icon_color" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/practiceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Practice"
+                android:textSize="12sp"
+                android:textColor="@color/nav_text_color" />
+        </LinearLayout>
+
+        <!-- Live Contest Tab -->
+        <LinearLayout
+            android:id="@+id/liveContestTab"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:id="@+id/liveContestIndicator"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/nav_indicator_bg"
+                    android:visibility="invisible"/>
+
+                <ImageView
+                    android:id="@+id/liveContestIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_live_contest"
+                    app:tint="@color/nav_icon_color" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/liveContestText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Live Contest"
+                android:textSize="12sp"
+                android:textColor="@color/nav_text_color" />
+        </LinearLayout>
+
+        <!-- Saved Lists Tab -->
+        <LinearLayout
+            android:id="@+id/savedListsTab"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:id="@+id/savedListsIndicator"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/nav_indicator_bg"
+                    android:visibility="invisible"/>
+
+                <ImageView
+                    android:id="@+id/savedListsIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_saved_lists"
+                    app:tint="@color/nav_icon_color" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/savedListsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Saved Lists"
+                android:textSize="12sp"
+                android:textColor="@color/nav_text_color" />
+        </LinearLayout>
+
+        <!-- Profile Tab -->
+        <LinearLayout
+            android:id="@+id/profileTab"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:id="@+id/profileIndicator"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/nav_indicator_bg"
+                    android:visibility="invisible"/>
+
+                <ImageView
+                    android:id="@+id/profileIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_profile"
+                    app:tint="@color/nav_icon_color" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/profileText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Profile"
+                android:textSize="12sp"
+                android:textColor="@color/nav_text_color" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</merge>
+

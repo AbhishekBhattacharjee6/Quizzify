@@ -1,6 +1,7 @@
 package com.example.quizzify.Fragments
 
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.util.Log
@@ -10,17 +11,28 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
+import androidx.compose.ui.window.Dialog
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.quizzify.Adapters.LeaderBoardAdapter
 import com.example.quizzify.Adapters.LiveQuizUIDAdapter
+import com.example.quizzify.Dialogs.CreateRoomDialog
 import com.example.quizzify.Firestore.FireStoreInstance
 import com.example.quizzify.QuizApplication
 import com.example.quizzify.R
+import com.example.quizzify.ViewModelFactories.LeaderBoardViewModelFactory
 import com.example.quizzify.ViewModelFactories.LiveQuizUIDVIewModelFactory
+import com.example.quizzify.ViewModels.GlobalFragViewModel
+import com.example.quizzify.ViewModels.LeaderBoardViewModel
 import com.example.quizzify.ViewModels.LiveQuizUIDViewModel
 import com.example.quizzify.ViewModels.QuizViewModel
+import com.example.quizzify.datamodels.LeaderBoardModel
+import com.example.quizzify.datamodels.RoomSetModel
 import com.example.quizzify.utils.Constants
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -41,6 +53,18 @@ class ActiveRooms : Fragment() {
 
     @Inject
     lateinit var LiveQuizUIDVMFactory:LiveQuizUIDVIewModelFactory
+
+    private lateinit var GlobalFragVM: GlobalFragViewModel
+
+
+    private val LiveQuizUIDViewModel:LiveQuizUIDViewModel by viewModels{
+        LiveQuizUIDVMFactory
+    }
+
+    @Inject
+    lateinit var LeaderBoardVMFactory:LeaderBoardViewModelFactory
+
+    lateinit var LeaderBoardAdapter: LeaderBoardAdapter
 
     lateinit var  startfrom:String
     lateinit var validtill:String
@@ -70,12 +94,13 @@ class ActiveRooms : Fragment() {
         ActiveRoomRV.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         LiveUIDAdapter=LiveQuizUIDAdapter(this, emptyList())
         ActiveRoomRV.adapter=LiveUIDAdapter
+        GlobalFragVM= ViewModelProvider(this)[GlobalFragViewModel::class.java]
+
         val NewRoom=view.findViewById<FloatingActionButton>(R.id.NewRoom)
-        val LiveQuizUIDViewModel:LiveQuizUIDViewModel by viewModels{
-            LiveQuizUIDVMFactory
-        }
+
         NewRoom.setOnClickListener{
-            RoomDialog()
+            val _Dialog= CreateRoomDialog()
+            _Dialog.show(parentFragmentManager,"NewRoom")
         }
         LiveQuizUIDViewModel.QuizListIDs.observe(viewLifecycleOwner){
             if(it!=null){
@@ -85,14 +110,9 @@ class ActiveRooms : Fragment() {
                 Toast.makeText(requireContext(),"No Active Rooms",Toast.LENGTH_SHORT).show()
             }
         }
-        LiveUIDAdapter.onItemClickListener(object :LiveQuizUIDAdapter.QuizSetListener{
-            override fun onItemClick(position: Int, QuizSetId: String) {
-                val Data=Bundle()
-                Data.putString("QuizSetId",QuizSetId)
-                ReplaceFrag(ActiveRoomQuestionList(),Data)
-            }
-
-        })
+        setFragmentResultListener("dialogDismissed") { _, _ ->
+            RefreshRecyclerView()
+        }
 
     }
     private fun RoomDialog(){
@@ -109,6 +129,7 @@ class ActiveRooms : Fragment() {
         val ValidTill=DialogView.findViewById<EditText>(R.id.editTextDate2)
         val Duration=DialogView.findViewById<NumberPicker>(R.id.Durations)
         val button=DialogView.findViewById<Button>(R.id.CreateRoom)
+        val PassCode=DialogView.findViewById<TextInputEditText>(R.id.PassCode)
         startfrom=year.toString()+month.toString()+day.toString()
         validtill=year.toString()+month.toString()+day.toString()
         duration="30"
@@ -125,14 +146,15 @@ class ActiveRooms : Fragment() {
         }
         button.setOnClickListener{
             val Room_Name=RoomName.text.toString()
-            if(startfrom.isEmpty() || validtill.isEmpty() || duration.isEmpty() || Room_Name.isEmpty()){
+            val Pass_Code=PassCode.text.toString()
+            if(startfrom.isEmpty() || validtill.isEmpty() || duration.isEmpty() || Room_Name.isEmpty() || Pass_Code.isEmpty()){
                 Toast.makeText(requireContext(),"Please Fill All The Fields",Toast.LENGTH_SHORT).show()
             }
             else if(startfrom.toInt()>validtill.toInt()){
                 Toast.makeText(requireContext(),"Start Date Cannot Be Greater Than End Date",Toast.LENGTH_SHORT).show()
             }
             else{
-                CreateNewRoom(Room_Name)
+                CreateNewRoom(Room_Name,Pass_Code)
                 dialog.dismiss()
                 Log.d("NewRoom", "Room Created Seccusefully-questionsetuid: $questionsetuid")
                 //Toast.makeText(requireContext(),"Room Created Successfully",Toast.LENGTH_SHORT).show()
@@ -160,21 +182,8 @@ class ActiveRooms : Fragment() {
         }
         datePickerDialog.show()
     }
-    private fun CreateNewRoom(RoomName:String){
+    private fun CreateNewRoom(RoomName:String,PassCode:String){
         questionsetuid=Constants.UID+System.currentTimeMillis().toString()
-        val FireStoreDB=FireStoreInstance.getFireStore()
-        val UIDDB=FireStoreInstance.getFireStore()
-        UIDDB.collection("UIDs").document(Constants.UID).get().addOnSuccessListener {
-            if(it.exists()){
-                UIDDB.collection("UIDs").document(Constants.UID).update("QuizSetIDs", FieldValue.arrayUnion(questionsetuid))
-            }
-            else{
-                val Data=HashMap<String,Any>()
-                Data.put("QuizSetIDs", emptyList<String>())
-                UIDDB.collection("UIDs").document(Constants.UID).set(Data)
-                UIDDB.collection("UIDs").document(Constants.UID).update("QuizSetIDs", FieldValue.arrayUnion(questionsetuid))
-            }
-        }
         val Data=Bundle()
         val QuizSet=HashMap<String,Any>()
         QuizSet["StartFrom"]=startfrom
@@ -182,12 +191,30 @@ class ActiveRooms : Fragment() {
         QuizSet["Duration"]=duration
         QuizSet["UserUid"]=Constants.UID
         QuizSet["QuizSetUid"]=questionsetuid
-        QuizSet["Passcode"]="Abhishek"
+        QuizSet["Passcode"]=PassCode
         QuizSet["RoomName"]=RoomName
+        QuizSet["SaveAllowed"]=true
         QuizSet["QuestionIds"]=emptyList<String>()
+        QuizSet["LeaderBoard"]=listOf<Any>()
+        val FireStoreDB=FireStoreInstance.getFireStore()
+        val UIDDB=FireStoreInstance.getFireStore()
+        UIDDB.collection("UIDs").document(Constants.UID).get().addOnSuccessListener {
+            if(it.exists()){
+                UIDDB.collection("UIDs").document(Constants.UID).update("QuizSetIDs", FieldValue.arrayUnion(QuizSet))
+            }
+            else{
+                val Data=HashMap<String,Any>()
+                Data.put("QuizSetIDs", emptyList<Map<String,Any>>())
+                UIDDB.collection("UIDs").document(Constants.UID).set(Data).addOnSuccessListener {
+                    UIDDB.collection("UIDs").document(Constants.UID).update("QuizSetIDs", FieldValue.arrayUnion(QuizSet))
+                }
+
+            }
+        }
         FireStoreDB.collection("Quizset").document(questionsetuid).set(QuizSet)
             .addOnSuccessListener {
                 Toast.makeText(requireContext(),"Room Created Successfully",Toast.LENGTH_SHORT).show()
+                RefreshRecyclerView()
                 Data.putString("QuizSetID",questionsetuid)
                 ReplaceFrag(CreateRoom(),Data)
             }
@@ -195,11 +222,77 @@ class ActiveRooms : Fragment() {
                 Toast.makeText(requireContext(),"Room Creation Failed",Toast.LENGTH_SHORT).show()
             }
     }
-    private fun ReplaceFrag(Frag: Fragment,Data:Bundle){
+    fun ReplaceFrag(Frag: Fragment,Data:Bundle){
         Frag.arguments=Data
         val fragManager=parentFragmentManager
+        GlobalFragVM.currentFragment
         val fragTransaction=fragManager.beginTransaction()
+        fragTransaction.addToBackStack(null)
         fragTransaction.replace(R.id.FrameLayout,Frag)
         fragTransaction.commit()
+    }
+    fun DeleteQuizSet(QuizSetID:String,QuestionSetList:List<RoomSetModel>,Position:Int){
+        val dialog= Dialog(requireContext())
+        dialog.setContentView(R.layout.endquizdialog)
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(false)
+        val Title=dialog.findViewById<TextView>(R.id.textView36)
+        val Yes=dialog.findViewById<Button>(R.id.button11)
+        val No=dialog.findViewById<Button>(R.id.button10)
+        Title.text="Are You Sure You Want To Delete This Quiz Set?"
+        No.setOnClickListener {
+            dialog.dismiss()
+        }
+        Yes.setOnClickListener {
+            val QuizSet_Ref = FireStoreInstance.getFireStore().collection("Quizset").document(QuizSetID)
+            QuizSet_Ref.get().addOnSuccessListener {
+                if (it.exists()) {
+                    val QuestionList = it.get("QuestionIds") as List<String>
+                    Log.d("QuestionListFetched", "QuestionList: $QuestionList")
+                    if (QuestionList.isNotEmpty()) {
+                        for (QuestionID in QuestionList) {
+                            val Question_Ref = FireStoreInstance.getFireStore().collection("LiveQuestions").document(QuestionID)
+                            Question_Ref.get().addOnSuccessListener {
+                                if(it.exists()){
+                                    Question_Ref.delete().addOnSuccessListener {
+                                        Log.d("DeleteQuizSuccesfull", "Question Deleted Successfully")
+                                    }.addOnFailureListener {
+                                        Log.d("DeleteQuizError", "Question Deletion Failed")
+                                    }
+                                }
+                            }.addOnFailureListener {
+                                Log.d("DeleteQuestionFailed", "Question Deletion Failed")
+                            }
+                        }
+                        val UID_Ref=FireStoreInstance.getFireStore().collection("UIDs").document(Constants.UID)
+                        UID_Ref.update("QuizSetIDs",FieldValue.arrayRemove(QuizSetID)).addOnSuccessListener {
+                                Log.d("DeletefromUID", "QuizSet Deleted Successfully")
+                            }.addOnFailureListener {
+                                Log.d("DeletefromUID", "QuizSet Deletion Failed")
+                            }
+                        QuizSet_Ref.delete().addOnSuccessListener {
+                            dialog.dismiss()
+                            val newQuestionList=QuestionSetList.toMutableList()
+                            newQuestionList.removeAt(Position)
+                            LiveUIDAdapter.updateList(newQuestionList)
+                            Toast.makeText(requireContext(),"QuizSet Deleted Succesfully",Toast.LENGTH_SHORT).show()
+                        }.addOnFailureListener {
+                            Log.d("DeleteQuizSet", "QuizSet Deletion Failed")
+                        }
+                    }
+
+                }
+                else{
+                    Toast.makeText(requireContext(),"Something Went Wrong",Toast.LENGTH_SHORT).show()
+                }
+            }.addOnFailureListener {
+                Toast.makeText(requireContext(),"Something Went Wrong",Toast.LENGTH_SHORT).show()
+            }
+        }
+        dialog.show()
+    }
+
+    fun RefreshRecyclerView(){
+       LiveQuizUIDViewModel.fetchQuizList()
     }
 }

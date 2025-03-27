@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.quizzify.Firestore.FireStoreInstance
 import com.example.quizzify.datamodels.ARQuestionListModel
+import com.example.quizzify.datamodels.RoomSetModel
 import com.example.quizzify.utils.Constants
 import com.google.firebase.firestore.CollectionReference
 import kotlinx.coroutines.tasks.await
@@ -15,15 +16,27 @@ import kotlinx.coroutines.Dispatchers
 class LiveQuizRepository @Inject constructor(private val FireStore:FireStoreInstance){
     //FOR RETRIEVING QUIZSET LIST
     var UID_Ref: CollectionReference = FireStore.getFireStore().collection("UIDs")
-    private val QuizListID=MutableLiveData<List<String>>(emptyList())
-    val _QuizListID:LiveData<List<String>>
+    private val QuizListID=MutableLiveData<List<RoomSetModel>>(emptyList())
+    val _QuizListID:LiveData<List<RoomSetModel>>
         get()=QuizListID
 
     suspend fun getQuizListIDs(){
         UID_Ref.document(Constants.UID).get().addOnSuccessListener {
             if(it.exists()){
-                var QuizIDList=it.get("QuizSetIDs") as List<String>
-                QuizListID.postValue(QuizIDList)
+                val quizSetList = it.get("QuizSetIDs") as? List<Map<String, Any>> ?: emptyList()
+                val quizList = quizSetList.map { map ->
+                    RoomSetModel(
+                        StartFrom = map["StartFrom"] as? String ?: "",
+                        ValidTill = map["ValidTill"] as? String ?: "",
+                        Duration = map["Duration"] as? String ?: "",
+                        UserUid = map["UserUid"] as? String ?: "",
+                        QuizSetUid = map["QuizSetUid"] as? String ?: "",
+                        Passcode = map["Passcode"] as? String ?: "",
+                        RoomName = map["RoomName"] as? String ?: "",
+                        SaveAllowed = map["SaveAllowed"] as? Boolean ?: true
+                    )
+                }
+                QuizListID.postValue(quizList)
             }
         }
     }
@@ -50,14 +63,14 @@ class LiveQuizRepository @Inject constructor(private val FireStore:FireStoreInst
         var temp_List= mutableListOf<ARQuestionListModel>()
         for(QuestionID in QuizIDs) {
             val it = IndividualQuestion_Ref.document(QuestionID).get().await()
-                if (it.exists()) {
+                 if (it.exists()) {
                     val QuestionInfo = ARQuestionListModel(
                         it.getString("Question") ?: "",
-                        it.getString("CorrectAnswer") ?: "",
-                        it.getString("WrongAnswer1") ?: "",
-                        it.getString("WrongAnswer2") ?: "",
-                        it.getString("WrongAnswer3") ?: "",
-                        it.getString("QuestionId") ?: ""
+                        it.getString("CorrectAnswer") ?: "Deleted",
+                        it.getString("WrongAnswer1") ?: "Deleted",
+                        it.getString("WrongAnswer2") ?: "Deleted",
+                        it.getString("WrongAnswer3") ?: "Deleted",
+                        it.getString("QuestionID") ?: ""
                     )
                     Log.d("QuestionInfo", QuestionInfo.toString())
                     temp_List.add(QuestionInfo)

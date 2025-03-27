@@ -4,12 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.quizzify.Repository.SavedListRepo
+import com.example.quizzify.datamodels.SavedCollectionModel
 import kotlinx.coroutines.launch
 
 class SavedListNamesViewModel(private val repo:SavedListRepo):ViewModel() {
-    val SavedNameListSet:LiveData<List<String>>
+    val SavedNameListSet:LiveData<List<SavedCollectionModel>>
         get()=repo._SavedListNames
-    fun getListNames(){
+    fun getSavedLists(){
         viewModelScope.launch {
             repo.getSavedListNames()
         }

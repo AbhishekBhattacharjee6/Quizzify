@@ -1,0 +1,41 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="56dp"
+    android:height="56dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Earth Base Circle -->
+    <path
+        android:fillColor="#87CEEB"
+        android:strokeColor="#000000"
+        android:strokeWidth="2"
+        android:pathData="M12,2 A10,10 0 1,1 11.99,2" />
+
+    <!-- Continents -->
+    <path
+        android:fillColor="#90EE90"
+        android:strokeColor="#000000"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M7,6 Q9,5 11,6 L13,5 L15,6 L17,8 L17,10 L15,12 L14,14 L12,15 L10,14 L8,12 L6,11 L7,9 L8,8 Z" />
+
+    <path
+        android:fillColor="#90EE90"
+        android:strokeColor="#000000"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M18,15 Q19,17 18,19 L16,18 L15,16 Z" />
+
+    <path
+        android:fillColor="#90EE90"
+        android:strokeColor="#000000"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M5,15 Q7,16 8,18 L7,19 Q5,18 5,15" />
+</vector>
+
+
+

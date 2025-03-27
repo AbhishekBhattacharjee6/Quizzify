@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_8">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_option"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_16">
+
+        <CheckBox
+            android:id="@+id/optionCheckbox"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:drawableStart="@drawable/checkbox_selector"
+            android:button="@null"
+            android:drawablePadding="20dp"
+            android:clickable="false" />
+
+        <TextView
+            android:id="@+id/optionText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_12"
+            android:text="Test Option"
+            android:layout_weight="1"
+            android:textColor="@color/text__primary"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/correctAnswerChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:background="@drawable/bg_chip_green"
+            android:paddingHorizontal="@dimen/spacing_8"
+            android:paddingVertical="@dimen/spacing_4"
+            android:text="Correct Answer"
+            android:textColor="@color/green_600"
+            android:textSize="12sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</FrameLayout>

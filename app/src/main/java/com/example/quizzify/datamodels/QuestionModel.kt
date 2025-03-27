@@ -8,10 +8,12 @@ data class QuestionModel(
     val CorrectAnswer: String,
     val WrongAnswer1: String,
     val WrongAnswer2: String,
-    val WrongAnswer3: String
+    val WrongAnswer3: String,
+    val QuestionID:String
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
+        parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
@@ -25,6 +27,7 @@ data class QuestionModel(
         parcel.writeString(WrongAnswer1)
         parcel.writeString(WrongAnswer2)
         parcel.writeString(WrongAnswer3)
+        parcel.writeString(QuestionID)
     }
 
     override fun describeContents(): Int {

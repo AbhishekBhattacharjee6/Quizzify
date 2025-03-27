@@ -1,0 +1,94 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="56dp"
+    android:height="56dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Book Base Structure -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M4,2h14c1.1,0,2,0.9,2,2v16c0,1.1,-0.9,2,-2,2H4c-1.1,0,-2,-0.9,-2,-2V4C2,2.9,2.9,2,4,2z"/>
+
+    <!-- Book Cover -->
+    <path
+        android:fillColor="#FFC0CB"
+        android:pathData="M5,4h13v14H5c-0.6,0,-1,-0.4,-1,-1V5C4,4.4,4.4,4,5,4z"/>
+
+    <!-- Book Spine Details -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M4,5L4,7M4,9L4,11M4,13L4,15"/>
+
+    <!-- Colorful Spine Sections -->
+    <path
+        android:fillColor="#40E0D0"
+        android:pathData="M4,7L4,9"/>
+
+    <path
+        android:fillColor="#E6E6FA"
+        android:pathData="M4,11L4,13"/>
+
+    <!-- "MANGA" Text -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M6,5.5L7,5.5L7,7.5L6,7.5zM6,5.5L6,7.5M7,5.5L7,7.5M6,6.5L7,6.5"/>
+
+    <path
+        android:fillColor="#000000"
+        android:pathData="M8,5.5L10,5.5L10,7.5L8,7.5zM8,5.5L8,7.5M8,6.5L9.5,6.5"/>
+
+    <path
+        android:fillColor="#000000"
+        android:pathData="M11,5.5L13,5.5L11,7.5L13,7.5"/>
+
+    <path
+        android:fillColor="#000000"
+        android:pathData="M14,5.5L16,5.5L14,7L16,7L16,7.5L14,7.5z"/>
+
+    <!-- Kawaii Face Expression -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M9,12L7,10M13,10L15,12"/>
+
+    <path
+        android:fillColor="#000000"
+        android:pathData="M8,13A3,2 0,1 0,14 13A3,2 0,1 0,8 13z"/>
+
+    <path
+        android:fillColor="#FF69B4"
+        android:pathData="M9,13A2,1 0,1 0,13 13A2,1 0,1 0,9 13z"/>
+
+    <!-- Face Details -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M8,10m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+
+    <path
+        android:fillColor="#000000"
+        android:pathData="M16,10m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+
+    <!-- Expression Lines -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M9,18L11,18M13,18L15,18"/>
+
+    <!-- Book Bottom -->
+    <path
+        android:fillColor="#40E0D0"
+        android:pathData="M4,18h14v2c0,1.1,-0.9,2,-2,2H5c-1.1,0,-2,-0.9,-2,-2v-2h1z"/>
+
+    <!-- Book Pages -->
+    <path
+        android:fillColor="#D3D3D3"
+        android:pathData="M6,19h10v1H6z"/>
+
+    <!-- Bookmark -->
+    <path
+        android:fillColor="#9370DB"
+        android:pathData="M17,12L18,12L18,16L17.5,17L17,16z"/>
+
+</vector>
+
+
+
+

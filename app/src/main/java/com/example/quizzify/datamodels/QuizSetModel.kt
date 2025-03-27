@@ -1,7 +1,7 @@
 package com.example.quizzify.datamodels
 
-data class QuizSetModel(val Duration:String,val PassCode:String,val QuizSetId:String,val RoomName:String,val StartFrom:String,val CreatorUID:String,val ValidTill:String){
-    fun toMap():Map<String,String>{
+data class QuizSetModel(val Duration:String,val PassCode:String,val QuizSetId:String,val RoomName:String,val StartFrom:String,val CreatorUID:String,val ValidTill:String,val Attempted:Boolean,val SaveAllowed:Boolean){
+    fun toMap():Map<String,Any>{
         return mapOf(
             "Duration" to Duration,
             "PassCode" to PassCode,
@@ -9,7 +9,9 @@ data class QuizSetModel(val Duration:String,val PassCode:String,val QuizSetId:St
             "RoomName" to RoomName,
             "StartFrom" to StartFrom,
             "CreatorUID" to CreatorUID,
-            "ValidTill" to ValidTill
+            "ValidTill" to ValidTill,
+            "Attempted" to Attempted,
+            "SaveAllowed" to SaveAllowed
         )
     }
     companion object {
@@ -21,7 +23,9 @@ data class QuizSetModel(val Duration:String,val PassCode:String,val QuizSetId:St
                 RoomName = map["RoomName"] as String,
                 StartFrom = map["StartFrom"] as String,
                 CreatorUID = map["CreatorUID"] as String,
-                ValidTill = map["ValidTill"] as String
+                ValidTill = map["ValidTill"] as String,
+                Attempted = map["Attempted"] as Boolean,
+                SaveAllowed = map["SaveAllowed"] as Boolean
             )
         }
     }

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background (Rectangle with Rounded Corners & Border) -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/white" />
+            <corners android:radius="16dp" />
+            <stroke
+                android:width="2dp"
+                android:color="@color/yellow_400" />
+        </shape>
+    </item>
+
+    <!-- Radio Button Circle (Unchecked State) -->
+    <item android:left="10dp" android:top="10dp">
+        <shape android:shape="oval">
+            <solid android:color="@android:color/white" />
+            <stroke
+                android:width="2dp"
+                android:color="@color/yellow_400" />
+            <size
+                android:width="24dp"
+                android:height="24dp" />
+        </shape>
+    </item>
+
+    <!-- Checked State (Yellow Filled Circle with Check Icon) -->
+    <item android:left="10dp" android:top="10dp">
+        <selector>
+            <item android:state_checked="true">
+                <layer-list>
+                    <item>
+                        <shape android:shape="oval">
+                            <solid android:color="@color/yellow_400" />
+                            <size
+                                android:width="24dp"
+                                android:height="24dp" />
+                        </shape>
+                    </item>
+                    <item
+                        android:width="16dp"
+                        android:height="16dp"
+                        android:drawable="@drawable/ic_check_circle"
+                        android:gravity="center" />
+                </layer-list>
+            </item>
+        </selector>
+    </item>
+
+</layer-list>

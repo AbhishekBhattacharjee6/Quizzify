@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="56dp"
+    android:height="56dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Computer tower -->
+    <path
+        android:fillColor="#546E7A"
+        android:pathData="M2,4L7,4C7.55,4 8,4.45 8,5L8,19C8,19.55 7.55,20 7,20L2,20C1.45,20 1,19.55 1,19L1,5C1,4.45 1.45,4 2,4Z"/>
+
+    <!-- Tower vents -->
+    <path
+        android:fillColor="#263238"
+        android:pathData="M2.5,7h4v1h-4zM2.5,9h4v1h-4z"/>
+
+    <!-- Tower bottom feet -->
+    <path
+        android:fillColor="#263238"
+        android:pathData="M2.5,19h1v0.5h-1zM5.5,19h1v0.5h-1z"/>
+
+    <!-- Tower power button -->
+    <path
+        android:fillColor="#FF9800"
+        android:pathData="M4,14m-0.8,0a0.8,0.8 0,1 1,1.6 0a0.8,0.8 0,1 1,-1.6 0"/>
+
+    <!-- Monitor screen -->
+    <path
+        android:fillColor="#2196F3"
+        android:pathData="M9,5L21,5C21.55,5 22,5.45 22,6L22,15C22,15.55 21.55,16 21,16L9,16C8.45,16 8,15.55 8,15L8,6C8,5.45 8.45,5 9,5Z"/>
+
+    <!-- Monitor base -->
+    <path
+        android:fillColor="#546E7A"
+        android:pathData="M9,16L21,16L21,18L9,18Z"/>
+
+    <!-- Monitor stand -->
+    <path
+        android:fillColor="#37474F"
+        android:pathData="M13,18L17,18L17,20L13,20Z"/>
+
+    <!-- Monitor base bottom -->
+    <path
+        android:fillColor="#37474F"
+        android:pathData="M12,20L18,20L18,21L12,21Z"/>
+
+    <!-- Monitor power LED -->
+    <path
+        android:fillColor="#FFEB3B"
+        android:pathData="M12,17m-0.6,0a0.6,0.6 0,1 1,1.2 0a0.6,0.6 0,1 1,-1.2 0"/>
+
+    <!-- Monitor buttons -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M18,17m-0.3,0a0.3,0.3 0,1 1,0.6 0a0.3,0.3 0,1 1,-0.6 0M19,17m-0.3,0a0.3,0.3 0,1 1,0.6 0a0.3,0.3 0,1 1,-0.6 0M20,17m-0.3,0a0.3,0.3 0,1 1,0.6 0a0.3,0.3 0,1 1,-0.6 0"/>
+
+    <!-- Outlines -->
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="0.8"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"
+        android:pathData="M2,4L7,4C7.55,4 8,4.45 8,5L8,19C8,19.55 7.55,20 7,20L2,20C1.45,20 1,19.55 1,19L1,5C1,4.45 1.45,4 2,4Z"/>
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="0.8"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"
+        android:pathData="M9,5L21,5C21.55,5 22,5.45 22,6L22,15C22,15.55 21.55,16 21,16L9,16C8.45,16 8,15.55 8,15L8,6C8,5.45 8.45,5 9,5Z"/>
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="0.8"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"
+        android:pathData="M9,16L21,16L21,18L9,18Z"/>
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="0.8"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"
+        android:pathData="M13,18L17,18L17,20L13,20Z"/>
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="0.8"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"
+        android:pathData="M12,20L18,20L18,21L12,21Z"/>
+</vector>
+

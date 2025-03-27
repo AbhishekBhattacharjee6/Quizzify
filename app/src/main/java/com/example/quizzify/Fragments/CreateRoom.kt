@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import com.example.quizzify.BottomNavBar.CustomBottomNavigation
 import com.example.quizzify.Firestore.FireStoreInstance
 import com.example.quizzify.QuizApplication
 import com.example.quizzify.R
@@ -34,21 +35,22 @@ class CreateRoom : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_room, container, false)
+        return inflater.inflate(R.layout.edit_add_questions, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().findViewById<CustomBottomNavigation>(R.id.bottomNavigation).visibility = View.GONE
         (requireActivity().application as QuizApplication).applicationComponent.injectQuestion(this)
         val RoomCode= arguments?.getString("QuizSetID")
-        val Question=view.findViewById<TextInputEditText>(R.id.Questions)
+        val Question=view.findViewById<TextInputEditText>(R.id.questionInput)
         //Correct Answer
-        val Option1=view.findViewById<TextInputEditText>(R.id.Option1)
+        val Option1=view.findViewById<TextInputEditText>(R.id.correctOptionInput)
         //Wrong Answers
-        val Option2=view.findViewById<TextInputEditText>(R.id.Option2)
-        val Option3=view.findViewById<TextInputEditText>(R.id.Option3)
-        val Option4=view.findViewById<TextInputEditText>(R.id.Option4)
-        val addBtn=view.findViewById<Button>(R.id.button5)
+        val Option2=view.findViewById<TextInputEditText>(R.id.wrongOption1Input)
+        val Option3=view.findViewById<TextInputEditText>(R.id.wrongOption2Input)
+        val Option4=view.findViewById<TextInputEditText>(R.id.wrongOption3Input)
+        val addBtn=view.findViewById<Button>(R.id.saveButton)
 
         addBtn.setOnClickListener {
             val QuestionBody=Question.text.toString()
@@ -62,6 +64,11 @@ class CreateRoom : Fragment() {
             }
             else{
                 CreateQuestion(RoomCode.toString(),QuestionBody,CorrectAnswer,WrongAnswer1,WrongAnswer2,WrongAnswer3)
+                Question.text?.clear()
+                Option1.text?.clear()
+                Option2.text?.clear()
+                Option3.text?.clear()
+                Option4.text?.clear()
                 Log.d("Created","Question Created Successfully")
             }
         }
@@ -96,6 +103,11 @@ class CreateRoom : Fragment() {
         }.addOnFailureListener {
             Log.d("Failure","Question Not Added")
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        requireActivity().findViewById<CustomBottomNavigation>(R.id.bottomNavigation).visibility = View.VISIBLE
     }
 
 }

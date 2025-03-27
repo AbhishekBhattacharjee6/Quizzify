@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="56dp"
+    android:height="56dp"
+    android:viewportWidth="64"
+    android:viewportHeight="64">
+
+    <!-- TV Body -->
+    <path
+        android:fillColor="#6B6B7B"
+        android:strokeColor="#000000"
+        android:strokeWidth="2"
+        android:pathData="M8,12 L56,12 C58.2,12 60,13.8 60,16 L60,48 C60,50.2 58.2,52 56,52 L8,52 C5.8,52 4,50.2 4,48 L4,16 C4,13.8 5.8,12 8,12 Z"/>
+
+    <!-- Screen with color bars -->
+    <path
+        android:fillColor="#FF4444"
+        android:pathData="M10,16h8v32h-8z"/>
+    <path
+        android:fillColor="#FFBB33"
+        android:pathData="M18,16h8v32h-8z"/>
+    <path
+        android:fillColor="#FFE566"
+        android:pathData="M26,16h8v32h-8z"/>
+    <path
+        android:fillColor="#33B5E5"
+        android:pathData="M34,16h8v32h-8z"/>
+    <path
+        android:fillColor="#99CC00"
+        android:pathData="M42,16h8v32h-8z"/>
+
+    <!-- Control knobs -->
+    <path
+        android:fillColor="#B3E5FC"
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:pathData="M52,24 C52,22.9 52.9,22 54,22 C55.1,22 56,22.9 56,24 C56,25.1 55.1,26 54,26 C52.9,26 52,25.1 52,24"/>
+    <path
+        android:fillColor="#B3E5FC"
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:pathData="M52,32 C52,30.9 52.9,30 54,30 C55.1,30 56,30.9 56,32 C56,33.1 55.1,34 54,34 C52.9,34 52,33.1 52,32"/>
+
+    <!-- Control lines -->
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="2"
+        android:pathData="M52,40h4"/>
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="2"
+        android:pathData="M52,44h4"/>
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="2"
+        android:pathData="M52,48h4"/>
+
+</vector>
+

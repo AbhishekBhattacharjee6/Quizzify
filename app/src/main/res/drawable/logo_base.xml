@@ -1,0 +1,27 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Outer circle -->
+    <path
+        android:name="outer_circle"
+        android:pathData="M54,18C33.01,18 16,35.01 16,56C16,76.99 33.01,94 54,94C74.99,94 92,76.99 92,56C92,35.01 74.99,18 54,18Z"
+        android:strokeWidth="4"
+        android:strokeColor="#8A2BE2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"/>
+
+    <!-- Q letter -->
+    <path
+        android:name="q_letter"
+        android:pathData="M42,42L42,70L66,70L66,42L42,42ZM42,42L66,42M66,70L72,76"
+        android:strokeWidth="6"
+        android:strokeColor="#FF4081"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"/>
+</vector>
+

@@ -27,7 +27,9 @@ class SearchRepo @Inject constructor(private val FireStore:FireStoreInstance) {
                     RoomName = document.getString("RoomName")!!,
                     StartFrom = document.getString("StartFrom")!!,
                     CreatorUID = document.getString("UserUid")!!,
-                    ValidTill = document.getString("ValidTill")!!
+                    ValidTill = document.getString("ValidTill")!!,
+                    Attempted=false,
+                    SaveAllowed = true
                 )
                 QuizList.add(User)
             }

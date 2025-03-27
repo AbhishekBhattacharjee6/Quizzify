@@ -8,7 +8,7 @@
     <item
         android:id="@+id/LiveQuiz"
         android:title="Live Quiz"
-        android:icon="@drawable/stream"
+        android:icon="@drawable/add"
         />
     <item
         android:id="@+id/CustomQuiz"

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="56dp"
+    android:height="56dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- First Die -->
+    <!-- Blue face -->
+    <path
+        android:fillColor="#2196F3"
+        android:pathData="M6,6l6,-3l6,3l-6,3z"/>
+    <!-- Red face -->
+    <path
+        android:fillColor="#FF5252"
+        android:pathData="M18,6l0,6l-6,3l0,-6z"/>
+    <!-- Green face -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M6,6l0,6l6,3l0,-6z"/>
+
+    <!-- Second Die -->
+    <!-- Yellow face -->
+    <path
+        android:fillColor="#FFC107"
+        android:pathData="M12,12l6,-3l6,3l-6,3z"/>
+    <!-- Blue face -->
+    <path
+        android:fillColor="#2196F3"
+        android:pathData="M24,12l0,6l-6,3l0,-6z"/>
+    <!-- Red face -->
+    <path
+        android:fillColor="#FF5252"
+        android:pathData="M12,12l0,6l6,3l0,-6z"/>
+
+    <!-- Dots on faces -->
+    <!-- Blue face dots (4) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M8,5.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0
+                         M10,4.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0
+                         M8,7.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0
+                         M10,6.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+
+    <!-- Red face dots (1) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M15,7.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+
+    <!-- Green face dots (3) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M7,8.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0
+                         M9,9.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0
+                         M8,10.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+
+    <!-- Yellow face dots (2) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M15,10.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0
+                         M17,11.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+
+    <!-- Blue face dots (5) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M19,13.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0
+                         M21,14.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0
+                         M20,15.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0
+                         M18,14.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0
+                         M19,15.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+
+    <!-- Red face dots (6) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M14,14.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0
+                         M16,15.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0
+                         M15,16.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0
+                         M13,15.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0
+                         M14,16.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0
+                         M15,17.5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+
+    <!-- Black outlines -->
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="0.5"
+        android:strokeLineJoin="round"
+        android:pathData="M6,6l6,-3l6,3l-6,3z
+                         M18,6l0,6l-6,3l0,-6z
+                         M6,6l0,6l6,3l0,-6z
+                         M12,12l6,-3l6,3l-6,3z
+                         M24,12l0,6l-6,3l0,-6z
+                         M12,12l0,6l6,3l0,-6z"/>
+</vector>
+

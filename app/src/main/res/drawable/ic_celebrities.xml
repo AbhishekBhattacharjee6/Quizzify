@@ -1,0 +1,35 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="56dp"
+    android:height="56dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Star Base -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M12,2 L15,8.5 L22,9.5 L17,14.5 L18,22 L12,18.5 L6,22 L7,14.5 L2,9.5 L9,8.5 Z" />
+
+    <!-- Sunglasses Frame -->
+    <path
+        android:fillColor="#191970"
+        android:pathData="M8,11 C8,10 10,10 10,11 L10,12 C10,13 8,13 8,12 Z
+                         M14,11 C14,10 16,10 16,11 L16,12 C16,13 14,13 14,12 Z
+                         M10,11.5 L14,11.5" />
+
+    <!-- Sunglasses Lenses -->
+    <path
+        android:fillColor="#000080"
+        android:pathData="M8.5,11.2 C8.5,10.5 9.5,10.5 9.5,11.2 L9.5,11.8 C9.5,12.5 8.5,12.5 8.5,11.8 Z
+                         M14.5,11.2 C14.5,10.5 15.5,10.5 15.5,11.2 L15.5,11.8 C15.5,12.5 14.5,12.5 14.5,11.8 Z" />
+
+    <!-- Lens Highlights -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.3"
+        android:pathData="M8.8,11 L9.2,11 L9,11.4 Z
+                         M14.8,11 L15.2,11 L15,11.4 Z" />
+
+</vector>
+
+
+

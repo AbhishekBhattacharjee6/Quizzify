@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="56dp"
+    android:height="56dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Globe -->
+    <path
+        android:fillColor="#A8E6FF"
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:pathData="M12,12m-8,0a8,8 0,1 1,16 0a8,8 0,1 1,-16 0"/>
+
+    <!-- Land masses -->
+    <path
+        android:fillColor="#B4F1A1"
+        android:pathData="M8,8.5C9,8 10.5,8.5 12,9C13.5,9.5 15,9 16,8.5C16.5,10.5 15,12.5 13,13C11,13.5 9,14.5 8,16.5C7,14.5 7,10.5 8,8.5Z"/>
+
+    <!-- Graduation cap base -->
+    <path
+        android:fillColor="#4A4A4A"
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:strokeLineJoin="round"
+        android:pathData="M7,4h10v2h-10z"/>
+
+    <!-- Cap top -->
+    <path
+        android:fillColor="#4A4A4A"
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:strokeLineJoin="round"
+        android:pathData="M12,2L17,4L12,6L7,4L12,2"/>
+</vector>
+
+
+
+
+
+

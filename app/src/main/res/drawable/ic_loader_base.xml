@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="80dp"
+    android:height="80dp"
+    android:viewportWidth="80"
+    android:viewportHeight="80">
+
+    <group
+        android:name="rotationGroup"
+        android:pivotX="40"
+        android:pivotY="40">
+
+        <!-- Outer circle -->
+        <path
+            android:name="circle1"
+            android:pathData="M40,8 A32,32 0 1,1 39.99,8"
+            android:strokeWidth="4"
+            android:strokeColor="#8B5CF6"
+            android:strokeLineCap="round"
+            android:trimPathStart="0"
+            android:trimPathEnd="0.3" />
+
+        <!-- Middle circle -->
+        <path
+            android:name="circle2"
+            android:pathData="M40,16 A24,24 0 1,1 39.99,16"
+            android:strokeWidth="4"
+            android:strokeColor="#A855F7"
+            android:strokeLineCap="round"
+            android:trimPathStart="0.2"
+            android:trimPathEnd="0.5" />
+
+        <!-- Inner circle -->
+        <path
+            android:name="circle3"
+            android:pathData="M40,24 A16,16 0 1,1 39.99,24"
+            android:strokeWidth="4"
+            android:strokeColor="#EC4899"
+            android:strokeLineCap="round"
+            android:trimPathStart="0.4"
+            android:trimPathEnd="0.7" />
+
+        <!-- Center dot -->
+        <path
+            android:pathData="M40,40 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0"
+            android:fillColor="#8B5CF6" />
+
+    </group>
+</vector>
+

@@ -8,7 +8,7 @@
 
     <app.futured.donut.DonutProgressView
         android:id="@+id/donut_view"
-        android:layout_width="350dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         app:donut_bgLineColor="@color/cloud"
         app:donut_gapAngle="270"
@@ -20,13 +20,32 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.32" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/button14"
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_width="210dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="75dp"
         android:text="Show LeaderBoard"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:background="@drawable/customized_button"
         app:layout_constraintEnd_toEndOf="@+id/donut_view"
         app:layout_constraintStart_toStartOf="@+id/donut_view"
         app:layout_constraintTop_toBottomOf="@+id/donut_view" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="23sp"
+        android:background="@drawable/customize_tv"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:padding="14dp"
+        app:layout_constraintBottom_toBottomOf="@+id/donut_view"
+        app:layout_constraintEnd_toEndOf="@+id/donut_view"
+        app:layout_constraintStart_toStartOf="@+id/donut_view"
+        app:layout_constraintTop_toTopOf="@+id/donut_view" />
 </androidx.constraintlayout.widget.ConstraintLayout>

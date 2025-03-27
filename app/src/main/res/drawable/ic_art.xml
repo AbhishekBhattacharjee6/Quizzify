@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="56dp"
+    android:height="56dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Brush Handle -->
+    <path
+        android:fillColor="#FF9500"
+        android:pathData="M6,18 L18,6 L20,8 L8,20 Z" />
+
+    <!-- Metal Ferrule -->
+    <path
+        android:fillColor="#BEBEBE"
+        android:pathData="M4,20 L6,18 L8,20 L6,22 Z" />
+
+    <!-- Brush Bristles -->
+    <path
+        android:fillColor="#A05038"
+        android:pathData="M2,22 L4,20 L6,22 L4,24 Z" />
+
+</vector>
+

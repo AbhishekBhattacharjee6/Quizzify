@@ -19,4 +19,18 @@
     <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
     </style>
+    <!-- Splash Screen theme -->
+    <style name="Theme.Quizzify.Splash" parent="Theme.SplashScreen">
+        <!-- Set the splash screen background color -->
+        <item name="windowSplashScreenBackground">@color/splash_bg</item>
+
+        <!-- Use our animated drawable as the splash screen icon -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/animated_logo</item>
+
+        <!-- Set the animation duration -->
+
+
+        <!-- Set the theme used after the splash screen is gone -->
+        <item name="postSplashScreenTheme">@style/Theme.Quizzify</item>
+    </style>
 </resources>

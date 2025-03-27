@@ -1,0 +1,97 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="56dp"
+    android:height="56dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Dog Head -->
+    <path
+        android:fillColor="#4A4A4A"
+        android:strokeColor="#000000"
+        android:strokeWidth="0.8"
+        android:pathData="M12,4 C16,4 18,8 18,12 C18,16 16,20 12,20 C8,20 6,16 6,12 C6,8 8,4 12,4 Z" />
+
+    <!-- Left Ear -->
+    <path
+        android:fillColor="#3A3A3A"
+        android:strokeColor="#000000"
+        android:strokeWidth="0.8"
+        android:pathData="M6,8 C4,8 3,10 4,12 C5,14 6,12 6,10 Z" />
+
+    <!-- Right Ear -->
+    <path
+        android:fillColor="#3A3A3A"
+        android:strokeColor="#000000"
+        android:strokeWidth="0.8"
+        android:pathData="M18,8 C20,8 21,10 20,12 C19,14 18,12 18,10 Z" />
+
+    <!-- Muzzle -->
+    <path
+        android:fillColor="#FFDAB9"
+        android:strokeColor="#000000"
+        android:strokeWidth="0.8"
+        android:pathData="M12,12 C15,12 16,14 16,16 C16,18 14,19 12,19 C10,19 8,18 8,16 C8,14 9,12 12,12 Z" />
+
+    <!-- Left Eye -->
+    <path
+        android:fillColor="#FFDAB9"
+        android:pathData="M9,10 C9.5,10 10,10.5 10,11 C9.5,11 9,10.5 9,10 Z" />
+
+    <!-- Right Eye -->
+    <path
+        android:fillColor="#FFDAB9"
+        android:pathData="M15,10 C14.5,10 14,10.5 14,11 C14.5,11 15,10.5 15,10 Z" />
+
+    <!-- Left Eye Curve -->
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="0.8"
+        android:strokeLineCap="round"
+        android:pathData="M8.5,11.5 C9,12 9.5,12 10,11.5" />
+
+    <!-- Right Eye Curve -->
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="0.8"
+        android:strokeLineCap="round"
+        android:pathData="M14,11.5 C14.5,12 15,12 15.5,11.5" />
+
+    <!-- Nose -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M12,13 C12.5,13 13,13.5 13,14 C12.5,14.5 11.5,14.5 11,14 C11,13.5 11.5,13 12,13 Z" />
+
+    <!-- Mouth -->
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="0.8"
+        android:strokeLineCap="round"
+        android:pathData="M11,14 C10,15 10,16 11,16.5 C11.5,17 12.5,17 13,16.5 C14,16 14,15 13,14" />
+
+    <!-- Tongue -->
+    <path
+        android:fillColor="#FFB6C1"
+        android:pathData="M11.5,15.5 C12,16 12.5,16 13,15.5 C12.5,16.5 11.5,16.5 11.5,15.5 Z" />
+
+    <!-- Green Sparkle -->
+    <path
+        android:fillColor="#98FB98"
+        android:pathData="M12,2 L12.5,3 L13,2 L12.5,1 Z" />
+
+    <!-- Blue Sparkle -->
+    <path
+        android:fillColor="#87CEEB"
+        android:pathData="M4,14 L5,14.5 L4,15 L3,14.5 Z" />
+
+    <!-- Yellow Sparkle -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M20,14 L21,14.5 L20,15 L19,14.5 Z" />
+
+    <!-- Red Sparkle -->
+    <path
+        android:fillColor="#FF6B6B"
+        android:pathData="M4,20 L5,20.5 L4,21 L3,20.5 Z" />
+
+</vector>
+

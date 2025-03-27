@@ -15,4 +15,9 @@ class PreRegRoomViewModel( val PreRegRepo:PreRegRepo):ViewModel() {
             PreRegRepo.getPreRegRooms()
         }
     }
+    fun Refresh(){
+        viewModelScope.launch {
+            PreRegRepo.getPreRegRooms()
+        }
+    }
 }

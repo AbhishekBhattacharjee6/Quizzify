@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzify.Adapters.QuestionListAdapter
@@ -17,8 +18,10 @@ import com.example.quizzify.R
 import com.example.quizzify.ViewModelFactories.ARIndividualQuestionViewModelFactory
 import com.example.quizzify.ViewModelFactories.QuestionListViewModelFactory
 import com.example.quizzify.ViewModels.ARIndividualQuestionViewModel
+import com.example.quizzify.ViewModels.GlobalFragViewModel
 import com.example.quizzify.ViewModels.QuestionListViewModel
 import com.example.quizzify.datamodels.ARQuestionListModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.FieldValue
 import javax.inject.Inject
 
@@ -31,6 +34,9 @@ class ActiveRoomQuestionList : Fragment() {
     @Inject
     lateinit var ARQuestionVMFactory:ARIndividualQuestionViewModelFactory
 
+    private lateinit var GlobalFragVM: GlobalFragViewModel
+
+
     @Inject
     lateinit var FireStore:FireStoreInstance
 
@@ -38,6 +44,9 @@ class ActiveRoomQuestionList : Fragment() {
 
     lateinit var QuizSetId:String
 
+    val QuestionListVM:QuestionListViewModel by viewModels {
+        QuestionListVMFactory
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,14 +64,13 @@ class ActiveRoomQuestionList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val QLRV=view.findViewById<RecyclerView>(R.id.QuestionListRV)
+        val AddQuestion=view.findViewById<FloatingActionButton>(R.id.addQuestion)
         QuizSetId= arguments?.getString("QuizSetId").toString()
         QLRV.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         val emptyQuestionList= mutableListOf<ARQuestionListModel>()
         QLAdapter=QuestionListAdapter(this, emptyQuestionList)
         (requireActivity().application as QuizApplication).applicationComponent.injectQuestionList(this)
-        val QuestionListVM:QuestionListViewModel by viewModels {
-            QuestionListVMFactory
-        }
+        GlobalFragVM= ViewModelProvider(this)[GlobalFragViewModel::class.java]
         val ARQuestionViewModel:ARIndividualQuestionViewModel by viewModels {
             ARQuestionVMFactory
         }
@@ -77,26 +85,47 @@ class ActiveRoomQuestionList : Fragment() {
             }
         }
     }
+        AddQuestion.setOnClickListener{
+            val data=Bundle()
+            data.putString("QuizSetID",QuizSetId)
+            ReplaceFragfromAdapter(AddNewQuestion(),data)
+        }
     }
-    fun ReplaceFragment(frag:Fragment,Data:Bundle){
-        frag.arguments=Data
-        val fragManager=parentFragmentManager
-        val fragTransaction=fragManager.beginTransaction()
-        fragTransaction.replace(R.id.FrameLayout,frag)
+
+    fun ReplaceFragfromAdapter(frag:Fragment,Data:Bundle){
+        frag.arguments = Data
+        val fragManager = parentFragmentManager
+        GlobalFragVM.currentFragment=frag
+        val fragTransaction = fragManager.beginTransaction()
+        fragTransaction.replace(R.id.FrameLayout, frag)
+        fragTransaction.addToBackStack(null)
         fragTransaction.commit()
     }
-    fun DeleteQuiz(QuizId:String){
+    fun DeleteQuiz(QuizId:String,QuestionList:MutableList<ARQuestionListModel>,Position:Int){
         val IndividualQuiz_Ref=FireStore.getFireStore().collection("LiveQuestions")
         val IndiQuizDoc_Ref=IndividualQuiz_Ref.document(QuizId)
         IndiQuizDoc_Ref.delete().addOnSuccessListener {
             val QuizSet_Ref=FireStore.getFireStore().collection("Quizset").document(QuizSetId)
             QuizSet_Ref.update("QuestionIds",FieldValue.arrayRemove(QuizId)).addOnSuccessListener {
                 Toast.makeText(requireContext(),"Question Deleted",Toast.LENGTH_SHORT).show()
+                if (Position in QuestionList.indices) {
+                    QuestionList.removeAt(Position)
+                    //QLAdapter.UpdateList(QuestionList) // Ensure RecyclerView updates
+                    RefreshRecycleView()
+                }
             }.addOnFailureListener {
                 Toast.makeText(requireContext(),"Question Deletion Failed",Toast.LENGTH_SHORT).show()
             }
         }.addOnFailureListener {
             Toast.makeText(requireContext(),"Question Deletion Failed",Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        QuestionListVM.getQuestionList(QuizSetId.toString())
+    }
+    private fun RefreshRecycleView(){
+        QuestionListVM.getQuestionList(QuizSetId.toString())
     }
 }

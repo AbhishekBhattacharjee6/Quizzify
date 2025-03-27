@@ -18,8 +18,8 @@ class IndividualQuestionFetchRepo @Inject constructor(private val FireStore:Fire
                     val wrongAnswer1 = document.getString("WrongAnswer1") ?: ""
                     val wrongAnswer2 = document.getString("WrongAnswer2") ?: ""
                     val wrongAnswer3 = document.getString("WrongAnswer3") ?: ""
-
-                    val questionModel = QuestionModel(question, correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3)
+                    val questionId=document.getString("QuestionID")?:""
+                    val questionModel = QuestionModel(question, correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3,questionId)
                     callback(questionModel) // Return the fetched question
                 } else {
                     callback(null) // If question does not exist

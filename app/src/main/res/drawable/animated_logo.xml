@@ -1,0 +1,14 @@
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/logo_base">
+
+    <!-- Animate the outer circle drawing -->
+    <target
+        android:name="outer_circle"
+        android:animation="@animator/draw_path" />
+
+    <!-- Animate the Q letter drawing -->
+    <target
+        android:name="q_letter"
+        android:animation="@animator/draw_path_delayed" />
+</animated-vector>
+

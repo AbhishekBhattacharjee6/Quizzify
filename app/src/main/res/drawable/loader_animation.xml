@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_loader_base">
+
+    <target
+        android:name="rotationGroup"
+        android:animation="@animator/loader_rotation" />
+
+    <target
+        android:name="circle1"
+        android:animation="@animator/loader_circle_1" />
+
+    <target
+        android:name="circle2"
+        android:animation="@animator/loader_circle_2" />
+
+    <target
+        android:name="circle3"
+        android:animation="@animator/loader_circle_3" />
+
+</animated-vector>
+

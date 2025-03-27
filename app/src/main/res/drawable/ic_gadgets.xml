@@ -1,0 +1,46 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="56dp"
+    android:height="56dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Phone Outer Border -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M8,2L16,2A3,3 0,0 1,19 5L19,19A3,3 0,0 1,16 22L8,22A3,3 0,0 1,5 19L5,5A3,3 0,0 1,8 2z" />
+
+    <!-- Phone Inner Border -->
+    <path
+        android:fillColor="#4A4A4A"
+        android:pathData="M8.5,3L15.5,3A2,2 0,0 1,17.5 5L17.5,19A2,2 0,0 1,15.5 21L8.5,21A2,2 0,0 1,6.5 19L6.5,5A2,2 0,0 1,8.5 3z" />
+
+    <!-- Phone Screen -->
+    <path
+        android:fillColor="#87CEFA"
+        android:pathData="M9,4L15,4A1,1 0,0 1,16 5L16,19A1,1 0,0 1,15 20L9,20A1,1 0,0 1,8 19L8,5A1,1 0,0 1,9 4z" />
+
+    <!-- Phone Notch -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M11,5h2v1h-2z" />
+
+    <!-- Verification Circle -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M16,12A3,3 0,1 1,22 12A3,3 0,1 1,16 12z" />
+
+    <!-- Checkmark -->
+    <path
+        android:fillColor="#7CFC00"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M17,12L18.5,13.5L20.5,10.5" />
+
+</vector>
+
+
+

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <!-- App Icon -->
+    <ImageView
+        android:id="@+id/ivAppIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_launcher_foreground"
+        app:tint="@color/purple_500" />
+
+    <!-- Contest Name -->
+    <TextView
+        android:id="@+id/tvContestName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="12dp"
+        android:layout_toEndOf="@id/ivAppIcon"
+        android:layout_toStartOf="@id/chipLive"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Algorithm Challenge #42"
+        android:textColor="@color/text_primary_profile"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <!-- Live Chip -->
+    <TextView
+        android:id="@+id/chipLive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/live_chip_background"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:text="LIVE"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <!-- Contest ID -->
+    <TextView
+        android:id="@+id/tvContestId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvContestName"
+        android:layout_alignStart="@id/tvContestName"
+        android:layout_marginTop="2dp"
+        android:text="ALG-42-2023"
+        android:textColor="@color/text_secondary_profile"
+        android:textSize="12sp" />
+
+    <!-- Divider -->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/tvContestId"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/divider_color" />
+
+    <!-- Message -->
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider"
+        android:text="Your scheduled contest is starting now! Tap to join and compete with others."
+        android:textColor="@color/text_primary_profile"
+        android:textSize="14sp" />
+
+    <!-- Start Button -->
+    <Button
+        android:id="@+id/btnStartContest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvMessage"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_primary_background"
+        android:text="Start Contest Now"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white" />
+
+</RelativeLayout>
+

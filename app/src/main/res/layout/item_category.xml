@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Main Content -->
+        <LinearLayout
+            android:id="@+id/headerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/category_gradient_bg"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <!-- Category Image -->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/categoryImage"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:padding="2dp"
+                android:background="@android:color/white"
+                app:shapeAppearanceOverlay="@style/CircularImageView"
+                android:src="@drawable/ic_history" />
+
+            <!-- Category Info -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/categoryName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="General Knowledge" />
+
+                <TextView
+                    android:id="@+id/questionCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#FFFFFF"
+                    android:alpha="0.8"
+                    android:textSize="14sp"
+                    tools:text="50 Questions Available" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Expandable Content -->
+        <LinearLayout
+            android:id="@+id/expandableContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:visibility="gone"
+           >
+
+            <!-- Difficulty Selection -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Difficulty"
+                android:textColor="@color/text_____primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/easyButton"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="Easy"
+                    android:textAllCaps="false"
+                    android:textSize="14sp"
+                    android:textColor="@color/difficulty_text_color"
+                    app:backgroundTint="@color/difficulty_easy_bg"
+                    app:cornerRadius="12dp"
+                    app:strokeColor="@color/easy_text_normal"
+                    app:strokeWidth="1dp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/mediumButton"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="Medium"
+                    android:textAllCaps="false"
+                    android:textSize="14sp"
+                    android:textColor="@color/difficulty_text_color"
+                    app:backgroundTint="@color/difficulty_medium_bg"
+                    app:cornerRadius="12dp"
+                    app:strokeColor="@color/medium_text_normal"
+                    app:strokeWidth="1dp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/hardButton"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Hard"
+                    android:textAllCaps="false"
+                    android:textSize="14sp"
+                    android:textColor="@color/difficulty_text_color"
+                    app:backgroundTint="@color/difficulty_hard_bg"
+                    app:cornerRadius="12dp"
+                    app:strokeColor="@color/hard_text_normal"
+                    app:strokeWidth="1dp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+            </LinearLayout>
+
+            <!-- Question Count Selection -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Number of Questions"
+                    android:textColor="@color/text_____primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/questionCountText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text____primary"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="10 Questions" />
+            </LinearLayout>
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/questionCountSlider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:value="1"
+                android:valueFrom="1"
+                android:valueTo="50"
+                android:stepSize="1"
+                app:labelBehavior="floating"
+                app:trackColor="@color/slider_track_color"
+                app:trackColorActive="@color/slider_track_active"
+                app:thumbColor="@color/slider_thumb_color"
+                app:haloColor="@color/slider_halo_color"/>
+
+            <!-- Practice Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/practiceButton"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="24dp"
+                android:text="Start Practice"
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                app:cornerRadius="12dp"
+                android:backgroundTint="@color/practice_button_bg"
+                app:elevation="4dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

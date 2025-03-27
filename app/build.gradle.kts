@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     kotlin("kapt")
     alias(libs.plugins.google.gms.google.services)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -50,10 +51,12 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-    implementation(libs.androidx.ui.desktop)
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.firebase.database)
     implementation(libs.firebase.firestore)
+    implementation(libs.androidx.animation.graphics.android)
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -68,12 +71,18 @@ dependencies {
     implementation("com.airbnb.android:lottie:3.4.0")
     implementation("com.mikhaellopez:circularprogressbar:3.1.0")
     implementation("com.github.cachapa:ExpandableLayout:2.9.2")
-
+    implementation("com.github.skydoves:powermenu:2.2.4")
     //implementation ("com.google.dagger:dagger-android-support:2.20")// if you use the support libraries
     kapt ("com.google.dagger:dagger-android-processor:2.20")
     kapt ("com.google.dagger:dagger-compiler:2.20")
     kapt ("com.squareup.inject:assisted-inject-processor:0.6.0")
     implementation("app.futured.donut:donut:2.2.4")
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+    implementation("nl.dionsegijn:konfetti-xml:2.0.5")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation("androidx.work:work-runtime-ktx:2.8.1")
+    implementation ("com.google.android.gms:play-services-auth:21.0.0")
 
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")

@@ -1,0 +1,138 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="56dp"
+    android:height="56dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Left Sword -->
+    <path
+        android:fillColor="#78909C"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M2,4L4,4L4,16L2,16z" />
+
+    <!-- Left Sword Handle -->
+    <path
+        android:fillColor="#263238"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M2,16L4,16L4,18L2,18z" />
+
+    <!-- Right Sword -->
+    <path
+        android:fillColor="#78909C"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M20,4L22,4L22,16L20,16z" />
+
+    <!-- Right Sword Handle -->
+    <path
+        android:fillColor="#263238"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M20,16L22,16L22,18L20,18z" />
+
+    <!-- Head -->
+    <path
+        android:fillColor="#9ACD32"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M8,4A4,4 0,1 0,16 4A4,4 0,1 0,8 4z" />
+
+    <!-- Mask -->
+    <path
+        android:fillColor="#4A86E8"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M7,6L17,6L16,8L8,8z" />
+
+    <!-- Eyes -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M9,7A0.8,0.8 0,1 0,10.6 7A0.8,0.8 0,1 0,9 7z M13.4,7A0.8,0.8 0,1 0,15 7A0.8,0.8 0,1 0,13.4 7z" />
+
+    <!-- Smile -->
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:pathData="M10,10C11.3333,11 12.6667,11 14,10" />
+
+    <!-- Body -->
+    <path
+        android:fillColor="#9ACD32"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M7,8L17,8L17,16L7,16z" />
+
+    <!-- Shell Front (Plastron) -->
+    <path
+        android:fillColor="#FFF8DC"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M9,10L15,10L15,18L9,18z" />
+
+    <!-- Shell Segments -->
+    <path
+        android:fillColor="#A0522D"
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:pathData="M9,10L15,10L15,12L9,12z M9,14L15,14L15,16L9,16z" />
+
+    <!-- Center Line -->
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:pathData="M12,10L12,18" />
+
+    <!-- Center Circle -->
+    <path
+        android:fillColor="#A0522D"
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:pathData="M11.5,13A0.5,0.5 0,1 0,12.5 13A0.5,0.5 0,1 0,11.5 13z" />
+
+    <!-- Left Arm -->
+    <path
+        android:fillColor="#9ACD32"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M7,9L5,12L5,16L7,14z" />
+
+    <!-- Right Arm -->
+    <path
+        android:fillColor="#9ACD32"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M17,9L19,12L19,16L17,14z" />
+
+    <!-- Left Leg -->
+    <path
+        android:fillColor="#9ACD32"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M9,18L7,22L9,22L10,20z" />
+
+    <!-- Right Leg -->
+    <path
+        android:fillColor="#9ACD32"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"
+        android:pathData="M15,18L17,22L15,22L14,20z" />
+
+    <!-- Blue Accents on Arms -->
+    <path
+        android:fillColor="#4A86E8"
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:pathData="M5,13L7,11 M17,11L19,13" />
+
+    <!-- Blue Accents on Legs -->
+    <path
+        android:fillColor="#4A86E8"
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:pathData="M8,20L9,21 M15,21L16,20" />
+
+</vector>
+

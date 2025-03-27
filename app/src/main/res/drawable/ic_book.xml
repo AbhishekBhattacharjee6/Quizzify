@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="56dp"
+    android:height="56dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+
+    <!-- Book pages -->
+    <path
+        android:fillColor="#FFF8E1"
+        android:pathData="M120,100 L392,100 C392,380 392,380 392,380 L120,380 C120,380 120,100 120,100 Z"/>
+
+    <!-- Book cover -->
+    <path
+        android:fillColor="#C62828"
+        android:pathData="M100,80 L372,80 C392,80 392,80 392,360 L120,360 C100,360 100,360 100,80 Z"/>
+
+    <!-- Corner accents -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M372,80 L392,80 L392,100 L372,100 Z
+                         M372,340 L392,340 L392,360 L372,360 Z
+                         M100,340 L120,340 L120,360 L100,360 Z
+                         M100,80 L120,80 L120,100 L100,100 Z"/>
+
+    <!-- Spine details -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M110,120 L110,320 L115,320 L115,120 Z
+                         M125,120 L125,320 L130,320 L130,120 Z"/>
+
+    <!-- Label on cover -->
+    <path
+        android:fillColor="#FFCDD2"
+        android:pathData="M160,140 L332,140 L332,220 L160,220 Z"/>
+
+    <!-- Bookmark -->
+    <path
+        android:fillColor="#8D6E63"
+        android:pathData="M340,360 L340,400 L360,380 L380,400 L380,360 Z"/>
+
+    <!-- Outline -->
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"
+        android:pathData="M100,80 L372,80 C392,80 392,80 392,360 L120,360 C100,360 100,360 100,80 Z"/>
+
+</vector>
+
