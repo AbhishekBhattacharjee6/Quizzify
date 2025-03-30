@@ -31,7 +31,7 @@ class ProfileSetupDialog:DialogFragment() {
 
     private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
-           // uploadImageToFirebase(it)
+            uploadImageToFirebase(it)
             URI=it
         }
     }
@@ -83,8 +83,8 @@ class ProfileSetupDialog:DialogFragment() {
         }
         SaveButton.setOnClickListener {
             val NameText=Name.text.toString()
-            if(URI!=null && NameText.isNotEmpty()){
-                uploadImageToFirebase(URI!!)
+            URI?.let { uploadImageToFirebase(it) }
+            if(NameText.isNotEmpty()){
                 saveName(NameText)
             }
         }
