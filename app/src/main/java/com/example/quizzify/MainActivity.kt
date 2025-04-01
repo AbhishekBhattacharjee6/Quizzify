@@ -24,6 +24,7 @@ import com.example.quizzify.Fragments.SaveCollectionsFragment
 import com.example.quizzify.databinding.ActivityMainBinding
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
+import com.example.quizzify.Dialogs.ProfileSetupDialog
 import com.example.quizzify.SharedPreference.ImagePreference
 import com.example.quizzify.SharedPreference.NamePreference
 import com.example.quizzify.ViewModelFactories.BasicInfoViewModelFactory
@@ -35,6 +36,7 @@ import com.example.quizzify.ViewModels.RecentContestViewModel
 import com.example.quizzify.ViewModels.SavedListNamesViewModel
 import com.example.quizzify.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -69,6 +71,7 @@ class MainActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
                 // Successfully signed in, proceed with loading the app
+                FirebaseAuth.getInstance().currentUser?.let { UIDFilesExist(it.uid) }
                 loadMainActivity(null)
             } else {
                 Toast.makeText(this, "Sign-in required!", Toast.LENGTH_SHORT).show()
@@ -96,6 +99,7 @@ class MainActivity : AppCompatActivity() {
             // If user is not logged in, launch SignInActivity
             val intent = Intent(this, SignIn::class.java)
             signInLauncher.launch(intent)
+
         } else {
             // If logged in, proceed
             Constants.UID= FirebaseAuth.getInstance().currentUser!!.uid
@@ -174,7 +178,47 @@ class MainActivity : AppCompatActivity() {
             isDataLoaded = true
         }.start()
     }
-    private fun SetName(UID:String){
+    private fun SetName(){
+        FirebaseFirestore.getInstance().collection("UIDInfo").document(Constants.UID).get().addOnSuccessListener {
+            val name=it.getString("Name")
+            if(name=="" || name==null){
 
+            }
+        }
+    }
+    private fun UIDFilesExist(UID:String){
+        val UID_Ref= FirebaseFirestore.getInstance().collection("UIDs").document(UID)
+        UID_Ref.get().addOnSuccessListener{
+            if(!it.exists()){
+                val data= hashMapOf(
+                    "PreRegisteredRooms" to emptyList<Map<String,Any>>(),
+                    "QuizSetIDs" to emptyList<Map<String,Any>>(),
+                    "SavedLists" to emptyList<Map<String,Any>>()
+                )
+                UID_Ref.set(data)
+            }
+        }
+        val UIDInfo_Ref= FirebaseFirestore.getInstance().collection("UIDInfo").document(UID)
+        UIDInfo_Ref.get().addOnSuccessListener {
+            if (!it.exists()) {
+                val data = hashMapOf(
+                    "Name" to "",
+                    "Questions Attempted" to 0,
+                    "Rank" to 0,
+                    "Level" to 1,
+                    "Correct Answers" to 0,
+                    "Contest Participated" to 0,
+                    "Achievement" to 0,
+                    "DaysActive" to emptyList<Map<String,Any>>(),
+                    "Recent Contests" to emptyList<Map<String,Any>>(),
+                    "UID" to UID,
+                    "ImageURI" to ""
+                )
+                UIDInfo_Ref.set(data).addOnSuccessListener {
+                    val dialog=ProfileSetupDialog.newInstance(Constants.UID)
+                    dialog.show(supportFragmentManager,"ProfileSetupDialog")
+                }
+            }
+        }
     }
 }

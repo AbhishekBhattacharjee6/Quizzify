@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.quizzify.BottomSheets.RecentContestBottomSheet
 import com.example.quizzify.Fragments.ProfileFragment
 import com.example.quizzify.R
 import com.example.quizzify.datamodels.RecentContestDataModel
@@ -48,6 +49,11 @@ class RecentContestAdapter(val frag:ProfileFragment, var contestList:MutableList
             holder.ContestDetails.text=(date.toInt()-contestList[position].Validity.toInt()).toString()+" Days ago"
         }
         holder.Rank.text="#0"
+        val Unanswered=contestList[position].Total-(contestList[position].Correct+contestList[position].Wrong)
+        holder.Expand.setOnClickListener {
+            val RecentSheet=RecentContestBottomSheet.newInstance(contestList[position].RoomName,contestList[position].RoomID.take(8),contestList[position].Total.toString(),contestList[position].Correct.toString(),contestList[position].Wrong.toString(),Unanswered.toString())
+            RecentSheet.show(frag.parentFragmentManager,"RecentContestBottomSheet")
+        }
     }
     fun UpdateRV(newList:MutableList<RecentContestDataModel>){
         contestList=newList

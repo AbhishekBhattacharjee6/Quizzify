@@ -14,6 +14,7 @@ import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -61,6 +62,9 @@ class LiveContest : Fragment() {
 
     private lateinit var GlobalFragVM: GlobalFragViewModel
 
+    lateinit var bun_dle:Bundle
+
+
 
     var TotalQuestionCount:Int=0
     var QuestionsAttempted:Int=0
@@ -104,6 +108,11 @@ class LiveContest : Fragment() {
 
 
         GlobalFragVM= ViewModelProvider(this)[GlobalFragViewModel::class.java]
+
+
+        setFragmentResultListener("ConfirmationDialog") { _, _ ->
+            ReplaceandEmptyFrag(TestResults(),bun_dle)
+        }
 
 
         QuizSetID= arguments?.getString("QuizSetID").toString()
@@ -199,19 +208,16 @@ class LiveContest : Fragment() {
     }
     fun Confirmation_Dialog(totalQuestions:Int,CorrectAnswers:Int,WrongAnswers:Int){
         val Unanswered=totalQuestions-CorrectAnswers-WrongAnswers
-        val bundle=Bundle()
-        bundle.putInt("TotalQuestions",totalQuestions)
-        bundle.putInt("CorrectAnswers",CorrectAnswers)
-        bundle.putInt("WrongAnswers",WrongAnswers)
-        bundle.putInt("Unanswered",Unanswered)
-        bundle.putString("QuizSetID",QuizSetID)
-        bundle.putString("RoomName",RoomName)
-        bundle.putString("ValidTill",ValidTill)
-        parentFragmentManager.setFragmentResultListener("ConfirmationDialog", this) { _, _ ->
-            ReplaceandEmptyFrag(TestResults(),bundle)
-        }
-        val dialog=ConfirmationDialog()
-        dialog.show(parentFragmentManager,"ConfirmationDialog")
+        bun_dle=Bundle()
+        bun_dle.putInt("TotalQuestions",totalQuestions)
+        bun_dle.putInt("CorrectAnswers",CorrectAnswers)
+        bun_dle.putInt("WrongAnswers",WrongAnswers)
+        bun_dle.putInt("Unanswered",Unanswered)
+        bun_dle.putString("QuizSetID",QuizSetID)
+        bun_dle.putString("RoomName",RoomName)
+        bun_dle.putString("ValidTill",ValidTill)
+        val dialog=ConfirmationDialog.newInstance(totalQuestions.toString(),CorrectAnswers.toString(),WrongAnswers.toString(),Unanswered.toString(),QuizSetID,RoomName,ValidTill)
+        dialog.show(parentFragmentManager,"Confirmation_Dialog")
     }
 
     fun ReplaceFragment(frag:Fragment,Data:Bundle){

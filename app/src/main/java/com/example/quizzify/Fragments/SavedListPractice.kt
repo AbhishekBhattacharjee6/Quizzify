@@ -13,6 +13,7 @@ import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -41,6 +42,9 @@ class SavedListPractice : Fragment() {
 
     var QuestionTracker:Int=0
 
+    lateinit var bun_dle:Bundle
+
+
     lateinit var SavedListPracticeAdapter:SavedListPracticeAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +71,9 @@ class SavedListPractice : Fragment() {
         layoutParams.height = getAppUsableScreenHeight(requireActivity()) // Full app height including where bottom nav was
         frameLayout.layoutParams = layoutParams
 
+        setFragmentResultListener("ConfirmationDialog") { _, _ ->
+            ReplaceandEmptyFrag(SavedPracticeFinalResultFragment(),bun_dle)
+        }
         GlobalFragVM= ViewModelProvider(this)[GlobalFragViewModel::class.java]
 
         val Questions= arguments?.getParcelableArrayList<QuestionModel>("QuestionList")
@@ -163,16 +170,13 @@ class SavedListPractice : Fragment() {
     }
     fun Confirmation_Dialog(totalQuestions:Int,CorrectAnswers:Int,WrongAnswers:Int){
         val Unanswered=totalQuestions-CorrectAnswers-WrongAnswers
-        val bundle=Bundle()
-        bundle.putInt("TotalQuestions",totalQuestions)
-        bundle.putInt("CorrectAnswers",CorrectAnswers)
-        bundle.putInt("WrongAnswers",WrongAnswers)
-        bundle.putInt("Unanswered",Unanswered)
-        parentFragmentManager.setFragmentResultListener("ConfirmationDialog", this) { _, _ ->
-            ReplaceandEmptyFrag(FinalResultFragment(),bundle)
-        }
-        val dialog= ConfirmationDialog()
-        dialog.show(parentFragmentManager,"ConfirmationDialog")
+        val bun_dle=Bundle()
+        bun_dle.putInt("TotalQuestions",totalQuestions)
+        bun_dle.putInt("CorrectAnswers",CorrectAnswers)
+        bun_dle.putInt("WrongAnswers",WrongAnswers)
+        bun_dle.putInt("Unanswered",Unanswered)
+        val dialog= ConfirmationDialog.newInstance(totalQuestions.toString(),CorrectAnswers.toString(),WrongAnswers.toString(),Unanswered.toString(),"","","")
+        dialog.show(parentFragmentManager,"Confirmation_Dialog")
     }
 
     override fun onDestroy() {

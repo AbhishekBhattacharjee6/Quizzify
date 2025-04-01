@@ -1,6 +1,7 @@
 package com.example.quizzify.BottomSheets
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,7 +51,7 @@ class LeaderBoardBottomSheet:BottomSheetDialogFragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val QuizID= arguments?.getString("QuizID")
+        val QuizID= arguments?.getString("QuestionID")
         val QuizSetName=arguments?.getString("QuizSetName")
         val RV=view.findViewById<RecyclerView>(R.id.leaderboardRecyclerView)
         val CloseBtn=view.findViewById<ImageButton>(R.id.closeButton)
@@ -89,10 +90,13 @@ class LeaderBoardBottomSheet:BottomSheetDialogFragment(){
         val LeaderBoardVM:LeaderBoardViewModel by viewModels {
             LeaderBoardVMFactory
         }
-        RV.layoutManager=androidx.recyclerview.widget.LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+        Log.d("LeaderBoard",QuizID.toString())
+        LeaderBoardVM.getQuizId(QuizID.toString())
+        RV.layoutManager=LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
         LeaderBoardAdapter= LeaderBoardAdapter(this, mutableListOf())
         RV.adapter=LeaderBoardAdapter
         LeaderBoardVM._LeaderBoard_List.observe(viewLifecycleOwner){
+            Log.d("LeaderBoard",it.toString())
             val sortedList=sortLeaderboardByScoreDescending(it)
             val (topThree, rest) = splitLeaderboard(sortedList)
             FirstPlaceImg.visibility=View.GONE

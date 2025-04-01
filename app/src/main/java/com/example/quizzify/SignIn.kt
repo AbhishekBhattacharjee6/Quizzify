@@ -46,7 +46,7 @@ class SignIn:AppCompatActivity() {
         val SignInBtn=findViewById<MaterialButton>(R.id.signInButton)
         val GoogleSignInBtn=findViewById<MaterialButton>(R.id.googleSignInButton)
         val ForgotPassword=findViewById<TextView>(R.id.forgotPasswordText)
-        val SignUp=findViewById<TextView>(R.id.signUpText)
+        val SignUpButton=findViewById<TextView>(R.id.signUpText)
         SignInBtn.setOnClickListener {
             val EmailText=Email.text!!
             val PasswordText=PassWord.text!!
@@ -75,7 +75,7 @@ class SignIn:AppCompatActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        SignUp.setOnClickListener {
+        SignUpButton.setOnClickListener {
             val intent = Intent(this, SignUp::class.java)
             signUpLauncher.launch(intent)
         }
@@ -126,7 +126,6 @@ class SignIn:AppCompatActivity() {
                 if (task.isSuccessful) {
                     Toast.makeText(this, "Sign-In Successful!", Toast.LENGTH_SHORT).show()
                     Constants.UID=auth.currentUser!!.uid
-                   UIDFilesExist(Constants.UID)
                     setResult(Activity.RESULT_OK)
                     finish()
                 } else {
@@ -167,14 +166,14 @@ class SignIn:AppCompatActivity() {
                     "Correct Answers" to 0,
                     "Contest Participated" to 0,
                     "Achievement" to 0,
-                    "Days Active" to emptyList<Map<String,Any>>(),
+                    "DaysActive" to emptyList<Map<String,Any>>(),
                     "Recent Contests" to emptyList<Map<String,Any>>(),
                     "UID" to UID,
                     "ImageURI" to ""
                 )
-                UIDInfo_Ref.set(data)
-                val dialog=ProfileSetupDialog.newInstance(UID)
-                dialog.show(supportFragmentManager,"ProfileSetupDialog")
+                UIDInfo_Ref.set(data).addOnSuccessListener {
+
+                }
             }
         }
     }

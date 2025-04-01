@@ -16,6 +16,8 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -61,6 +63,13 @@ class QuizQuestionFragment : Fragment() {
 
    var QuestionTracker:Int=0
 
+    var TotalQuestion:Int=0
+    var Correct_Answers:Int=0
+    var Wrong_Answers:Int=0
+    var _Unasnwered:Int=0
+
+    lateinit var bundle:Bundle
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -91,6 +100,12 @@ class QuizQuestionFragment : Fragment() {
         val QuestionNum= arguments?.getInt("QuestionCount")!!.toInt()
         val Difficulty= arguments?.getString("Difficulty").toString()
         QuizRV=view.findViewById<RecyclerView>(R.id.QuizRV)
+
+
+
+        setFragmentResultListener("ConfirmationDialog") { _, _ ->
+            ReplaceandEmptyFrag(PracticeFinalResultFragment(),bundle)
+        }
        // QuizAdapter= QuizAdapter(this, emptyList())
        // PracticeAdapter= PracticeAdapter(this, emptyList())
         QuizRV.layoutManager=object:LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false) {
@@ -196,16 +211,17 @@ class QuizQuestionFragment : Fragment() {
     }
     fun Confirmation_Dialog(totalQuestions:Int,CorrectAnswers:Int,WrongAnswers:Int){
         val Unanswered=totalQuestions-CorrectAnswers-WrongAnswers
-        val bundle=Bundle()
-        bundle.putInt("TotalQuestions",totalQuestions)
-        bundle.putInt("CorrectAnswers",CorrectAnswers)
-        bundle.putInt("WrongAnswers",WrongAnswers)
-        bundle.putInt("Unanswered",Unanswered)
-        parentFragmentManager.setFragmentResultListener("ConfirmationDialog", this) { _, _ ->
-            ReplaceandEmptyFrag(PracticeFinalResultFragment(),bundle)
-        }
-        val dialog= ConfirmationDialog()
-        dialog.show(parentFragmentManager,"ConfirmationDialog")
+        TotalQuestion=totalQuestions
+        Correct_Answers=CorrectAnswers
+        Wrong_Answers=WrongAnswers
+        _Unasnwered=Unanswered
+        bundle=Bundle()
+        bundle.putInt("TotalQuestions",TotalQuestion)
+        bundle.putInt("CorrectAnswers",Correct_Answers)
+        bundle.putInt("WrongAnswers",Wrong_Answers)
+        bundle.putInt("Unanswered",_Unasnwered)
+        val dialog= ConfirmationDialog.newInstance(totalQuestions.toString(),CorrectAnswers.toString(),WrongAnswers.toString(),Unanswered.toString(),"","","")
+        dialog.show(parentFragmentManager,"Confirmation__Dialog")
     }
 
     fun ReplaceandEmptyFrag(frag: Fragment,Data: Bundle){

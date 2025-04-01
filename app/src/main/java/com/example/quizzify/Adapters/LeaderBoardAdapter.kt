@@ -35,8 +35,10 @@ class LeaderBoardAdapter(val frag:LeaderBoardBottomSheet, val LeaderBoardList:Mu
         holder.Name.text=LeaderBoardList[position].Name
         holder.Score.text="${LeaderBoardList[position].Score}/${LeaderBoardList[position].TotalScore}"
         holder.Rank.text="${OriginalPosition+4}"
-        if(LeaderBoardList[position].ImgUrl!="Empty")
-        Glide.with(frag.requireContext()).load(LeaderBoardList[position].ImgUrl).into(holder.Image)
+        if(LeaderBoardList[position].ImgUrl!="") {
+            Glide.with(frag.requireContext()).load(LeaderBoardList[position].ImgUrl)
+                .into(holder.Image)
+        }
     }
     fun updateList(newList:MutableList<LeaderBoardModel>){
         LeaderBoardList.clear()

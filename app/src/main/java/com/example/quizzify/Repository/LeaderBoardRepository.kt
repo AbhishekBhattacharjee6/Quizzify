@@ -9,13 +9,14 @@ import javax.inject.Inject
 
 class LeaderBoardRepository @Inject constructor(private val FireStore:FireStoreInstance) {
      private val QuizSetID_Ref=FireStore.getFireStore().collection("Quizset")
-    private val LeaderBoard_List=MutableLiveData<List<LeaderBoardModel>>(emptyList())
+     private val LeaderBoard_List=MutableLiveData<List<LeaderBoardModel>>(emptyList())
     val _LeaderBoard_List:LiveData<List<LeaderBoardModel>>
         get()=LeaderBoard_List
    fun getLeaderBoard(QuizSetID:String){
         QuizSetID_Ref.document(QuizSetID).get().addOnSuccessListener {
             if(it.exists()){
                 val leaderboardList = it.get("LeaderBoard") as? List<Map<String, Any>>
+                Log.d("Firestore", "Fetched Leaderboard: $leaderboardList")
                 val LeaderBoardList=mutableListOf<LeaderBoardModel>()
                 if (!leaderboardList.isNullOrEmpty()) {
                     val convertedList = leaderboardList.map { map ->

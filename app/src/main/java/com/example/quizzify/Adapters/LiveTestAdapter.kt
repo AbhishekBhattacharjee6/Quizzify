@@ -1,5 +1,6 @@
 package com.example.quizzify.Adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +25,7 @@ class LiveTestAdapter(val frag: LiveContest, var QuestionList:List<String>,var Q
     var QuestionState: MutableList<Int> = MutableList(QuestionList.size) { 0 }
     var UserAnswers:MutableList<Int> = MutableList(QuestionList.size){0}
 
-    var Bookmark:MutableList<Boolean> =MutableList(QuestionList.size){false}
+    //var Bookmark:MutableList<Boolean> =MutableList(QuestionList.size){false}
 
     val totalQuestions=QuestionList.size
     var correctAnswersGiven=0
@@ -70,9 +71,11 @@ class LiveTestAdapter(val frag: LiveContest, var QuestionList:List<String>,var Q
         var CorrectAnswerIndex=-1;
         var SelectedIndex=-1;
         holder.BookMark.setOnClickListener {
+            Log.d("Book","BookmarkClicked")
+            Log.d("Bookmark", SaveListQuestionTrack.isInitialized().toString())
             if(SaveListQuestionTrack.isInitialized()){
               val Sheet=SavedListBottomSheet.newInstance(QuestionID[position],frag.QuestionTracker)
-                Sheet.show(frag.childFragmentManager,"SavedListBottomSheet")
+                 Sheet.show(frag.childFragmentManager,"SavedListBottomSheet")
             }
         }
         holder.OptionA.text=Options[position].Option0
@@ -92,9 +95,6 @@ class LiveTestAdapter(val frag: LiveContest, var QuestionList:List<String>,var Q
         holder.EndTest.setOnClickListener {
             //frag.EndTest(totalQuestions,correctAnswersGiven,wrongAnswersGiven)
             frag.Confirmation_Dialog(totalQuestions,correctAnswersGiven,wrongAnswersGiven)
-        }
-        holder.BookMark.setOnClickListener {
-
         }
         if(QuestionState[frag.QuestionTracker]==1){
             markCorrectOption(holder,CorrectIndexList[frag.QuestionTracker])

@@ -3,6 +3,8 @@ package com.example.quizzify
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.quizzify.Dialogs.ProfileSetupDialog
@@ -48,10 +50,11 @@ class SignUp:AppCompatActivity() {
                        if(task.isSuccessful){
                            Toast.makeText(this,"Account Created Successfully",Toast.LENGTH_SHORT).show()
                            Constants.UID=auth.currentUser!!.uid
-                           UIDFilesExist(Constants.UID)
                            val resultIntent = Intent()
                            setResult(Activity.RESULT_OK,resultIntent)
-                           finish()
+                           Handler(Looper.getMainLooper()).postDelayed({
+                               finish()
+                           }, 300)
                        }
                        else{
                            Toast.makeText(this,"Account Creation Failed",Toast.LENGTH_SHORT).show()
@@ -94,47 +97,15 @@ class SignUp:AppCompatActivity() {
                 if (task.isSuccessful) {
                     Toast.makeText(this, "Sign-In Successful!", Toast.LENGTH_SHORT).show()
                     Constants.UID=auth.currentUser!!.uid
-                    UIDFilesExist(Constants.UID)
                     val resultIntent = Intent()
                     setResult(Activity.RESULT_OK,resultIntent)
-                    finish()
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        finish()
+                    }, 300)
                 } else {
                     Toast.makeText(this, "Sign-In Failed", Toast.LENGTH_SHORT).show()
                 }
             }
     }
-    private fun UIDFilesExist(UID:String){
-        val UID_Ref= FirebaseFirestore.getInstance().collection("UIDs").document(UID)
-        UID_Ref.get().addOnSuccessListener{
-            if(!it.exists()){
-                val data= hashMapOf(
-                    "PreRegisteredRooms" to emptyList<Map<String,Any>>(),
-                    "QuizSetIDs" to emptyList<Map<String,Any>>(),
-                    "SavedLists" to emptyList<Map<String,Any>>()
-                )
-                UID_Ref.set(data)
-            }
-        }
-        val UIDInfo_Ref= FirebaseFirestore.getInstance().collection("UIDInfo").document(UID)
-        UIDInfo_Ref.get().addOnSuccessListener {
-            if (!it.exists()) {
-                val data = hashMapOf(
-                    "Name" to "",
-                    "Questions Attempted" to 0,
-                    "Rank" to 0,
-                    "Level" to 1,
-                    "Correct Answers" to 0,
-                    "Contest Participated" to 0,
-                    "Achievement" to 0,
-                    "Days Active" to emptyList<Map<String,Any>>(),
-                    "Recent Contests" to emptyList<Map<String,Any>>(),
-                    "UID" to UID,
-                    "ImageURI" to ""
-                )
-                UIDInfo_Ref.set(data)
-                val dialog= ProfileSetupDialog.newInstance(UID)
-                dialog.show(supportFragmentManager,"ProfileSetupDialog")
-            }
-        }
-    }
+
 }

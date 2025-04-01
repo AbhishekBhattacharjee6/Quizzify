@@ -30,6 +30,8 @@ import com.skydoves.powermenu.MenuAnimation
 import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
 import kotlinx.coroutines.tasks.await
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class PreRegRoomAdapter(val frag:PreRegisteredRooms,var PreRegRoomList:MutableList<QuizSetModel>):RecyclerView.Adapter<PreRegRoomAdapter.ViewHolder>() {
     private lateinit var ItemListener:itemListener
@@ -75,7 +77,7 @@ class PreRegRoomAdapter(val frag:PreRegisteredRooms,var PreRegRoomList:MutableLi
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val PreRegRoomInfo = PreRegRoomList[position]
         holder.roomName.text = PreRegRoomList[position].RoomName
-        holder.roomCreatorName.text = "Created by " + PreRegRoomList[position].CreatorUID
+        holder.roomCreatorName.text = "Created by @ " + PreRegRoomList[position].CreatorUID.take(10)
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH) + 1
@@ -92,7 +94,7 @@ class PreRegRoomAdapter(val frag:PreRegisteredRooms,var PreRegRoomList:MutableLi
         } else if (date < PreRegRoomList[position].StartFrom) {
             holder.Room.setBackgroundResource(R.drawable.bg_card_gradient_blue)
             holder.StartTime.text =
-                "Starts in " + (PreRegRoomInfo.StartFrom.toInt() - date.toInt()) + " days"
+                "Starts in " + getDaysDifference(PreRegRoomList[position].StartFrom, date).toString()+" Days"
             holder.StatusDot.setBackgroundResource(R.drawable.status_dot_background_2)
             holder.StatusText.text = "UPCOMING"
         } else {
@@ -159,5 +161,14 @@ class PreRegRoomAdapter(val frag:PreRegisteredRooms,var PreRegRoomList:MutableLi
                 PreRegRoomInfo.SaveAllowed
             )
         }
+    }
+    fun getDaysDifference(startDate: String, todayDate: String): Int {
+        val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
+
+        val start = dateFormat.parse(startDate)
+        val today = dateFormat.parse(todayDate)
+
+        val diff = start.time - today.time // Difference in milliseconds
+        return (diff / (1000 * 60 * 60 * 24)).toInt() // Convert to days
     }
 }

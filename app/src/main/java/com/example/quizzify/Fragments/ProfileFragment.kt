@@ -21,6 +21,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.quizzify.Adapters.RecentContestAdapter
 import com.example.quizzify.Firestore.FireStoreInstance
 import com.example.quizzify.QuizApplication
@@ -38,6 +39,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.imageview.ShapeableImageView
+import com.google.firebase.auth.FirebaseAuth
 import org.w3c.dom.Text
 import java.time.YearMonth
 import javax.inject.Inject
@@ -111,7 +113,7 @@ class ProfileFragment : Fragment() {
         ProfileImg=view.findViewById(R.id.profileImageView)
         Name=view.findViewById(R.id.nameTextView)
         UID=view.findViewById(R.id.usernameTextView)
-        SignOutButton=view.findViewById(R.id.signUpButton)
+        SignOutButton=view.findViewById(R.id.signOutButton)
         AchievementList.visibility=View.GONE
 
 
@@ -147,6 +149,7 @@ class ProfileFragment : Fragment() {
                Level.text=item.Level.toString()
                Rank.text="#Rank "+item.Rank.toString()
                Accuracy.text=((item.Correct_Answers.toFloat() / item.Questions_Attempted.toFloat()) * 100).toString() + "%"
+               Glide.with(requireContext()).load(item.Img).into(ProfileImg)
            }
        }
    }
@@ -257,6 +260,7 @@ class ProfileFragment : Fragment() {
         val googleSignInClient: GoogleSignInClient = GoogleSignIn.getClient(context, gso)
         googleSignInClient.signOut().addOnCompleteListener {
             if(it.isSuccessful){
+                FirebaseAuth.getInstance().signOut()
                 Constants.UID="Abhishek123"
                 cleartheStack(context as AppCompatActivity)
                 val intent=Intent(context, SignIn::class.java)

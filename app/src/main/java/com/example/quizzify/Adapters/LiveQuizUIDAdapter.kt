@@ -53,7 +53,7 @@ class LiveQuizUIDAdapter(val frag:ActiveRooms,var QuizSetList:List<RoomSetModel>
         var new_day=(day).toString().padStart(2,'0')
         val date=year.toString()+new_month+new_day
         holder.QuizSetName.text=QuizSetList[position].RoomName
-        holder.RoomId.text=QuizSetList[position].QuizSetUid
+        holder.RoomId.text=QuizSetList[position].QuizSetUid.take(15)
        holder.Duration.text=" "+QuizSetList[position].Duration+" Minutes"
         val StartDate=formatDate(QuizSetList[position].StartFrom)
         val EndDate=formatDate(QuizSetList[position].ValidTill)

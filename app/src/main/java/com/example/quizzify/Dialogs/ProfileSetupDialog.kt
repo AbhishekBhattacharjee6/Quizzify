@@ -18,6 +18,7 @@ import com.example.quizzify.SharedPreference.ImagePreference
 import com.example.quizzify.SharedPreference.NamePreference
 import com.example.quizzify.utils.Constants
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.storage.FirebaseStorage
 import javax.inject.Inject
@@ -27,10 +28,13 @@ class ProfileSetupDialog:DialogFragment() {
     @Inject
     lateinit var  FireStoreInstance: FireStoreInstance
 
+    lateinit var Img_View:ImageView
+
     private var URI:Uri?=null
 
     private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
+            Img_View.setImageURI(it)
             uploadImageToFirebase(it)
             URI=it
         }
@@ -72,7 +76,7 @@ class ProfileSetupDialog:DialogFragment() {
         val User_ID=view.findViewById<TextInputEditText>(R.id.usernameInput)
         User_ID.isClickable=false
         User_ID.text= Editable.Factory.getInstance().newEditable(UID?:"")
-        val Img_View=view.findViewById<ImageView>(R.id.profileImageView)
+        Img_View=view.findViewById(R.id.profileImageView)
         val SaveButton=view.findViewById<MaterialButton>(R.id.saveButton)
         val SkipButton=view.findViewById<MaterialButton>(R.id.skipButton)
         SkipButton.setOnClickListener {

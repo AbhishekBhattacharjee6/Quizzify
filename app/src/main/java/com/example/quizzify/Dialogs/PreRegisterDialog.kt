@@ -91,6 +91,8 @@ class PreRegisterDialog:DialogFragment() {
         val VerifyButton=view.findViewById<Button>(R.id.closeButton)
         val Alert=view.findViewById<LinearLayout>(R.id.warningMessage)
         val warningText=view.findViewById<TextView>(R.id.warningText)
+        val expText=view.findViewById<TextView>(R.id.PreRegExpText)
+        expText.visibility=View.GONE
         roomName.text=RoomName
         roomCreatorName.text=RoomCreatorName
         startFrom.text=formatDate(StartFrom!!)
@@ -117,6 +119,7 @@ class PreRegisterDialog:DialogFragment() {
                 else{
                     if(date.toInt()< StartFrom!!.toInt()) {
                         VerifyButton.text="PreRegister"
+                        Alert.visibility=View.GONE
                         VerifyButton.setOnClickListener {
                             val Pass = passCode.text.toString()
                             if (Pass.isEmpty()) {
@@ -153,6 +156,7 @@ class PreRegisterDialog:DialogFragment() {
                         passCode.isClickable=false
                         warningText.text="The pre-registration period for this room has ended"
                         Alert.visibility=View.VISIBLE
+                        expText.visibility=View.VISIBLE
                         VerifyButton.text="CLOSE"
                         VerifyButton.setOnClickListener {
                             dismiss()

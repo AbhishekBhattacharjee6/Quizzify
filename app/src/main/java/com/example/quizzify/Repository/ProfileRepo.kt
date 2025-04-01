@@ -25,7 +25,8 @@ class ProfileRepo @Inject constructor(private val FireStore:FireStoreInstance) {
                     it.get("Achievement").toString().toInt(),
                     it.get("Rank").toString().toInt(),
                     it.get("Contest Participated").toString().toInt(),
-                    it.get("Level").toString().toInt()
+                    it.get("Level").toString().toInt(),
+                    it.get("ImageURI").toString()
                 )
                 BasicInfo.postValue(listOf(Basic_Info))
             }

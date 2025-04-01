@@ -1,5 +1,6 @@
 package com.example.quizzify.Dialogs
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.setFragmentResult
 import com.example.quizzify.R
 
 class ConfirmationDialog :DialogFragment(){
@@ -69,15 +71,17 @@ class ConfirmationDialog :DialogFragment(){
             dismiss()
         }
         ConfirmBtn.setOnClickListener {
-            ConfirmationDialog().show(parentFragmentManager,"ConfirmationDialog")
             dismiss()
         }
+
         val totalAnswersGiven=correct_Answers.toInt()+wrong_Answers.toInt()
+        val _percentage = ((totalAnswersGiven.toDouble() / total_Questions.toDouble()) * 100)
+        val formattedPercentage = String.format("%.2f", _percentage)
         GeneralText.text="You have given $totalAnswersGiven answers out of $total_Questions"
         ProgressBar.max=total_Questions.toInt()
         ProgressBar.progress=totalAnswersGiven
         AnswerCount.text="Answered: $totalAnswersGiven/$total_Questions"
-        val percentage=(totalAnswersGiven.toDouble()/total_Questions.toDouble())*100
+        val percentage=formattedPercentage
         Percentage.text="$percentage%"
     }
     companion object{
@@ -110,5 +114,10 @@ class ConfirmationDialog :DialogFragment(){
             fragment. arguments=args
             return fragment
         }
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        setFragmentResult("ConfirmationDialog",Bundle())
     }
 }
