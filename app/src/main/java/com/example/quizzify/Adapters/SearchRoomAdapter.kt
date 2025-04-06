@@ -53,7 +53,7 @@ class SearchRoomAdapter(val fragment:Fragment,var SearchResList:List<QuizSetMode
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.RoomName.text=SearchResList[position].RoomName
-        holder.RoomCreatorName.text=SearchResList[position].CreatorUID
+        holder.RoomCreatorName.text=SearchResList[position].CreatorUID.take(6)
         holder.Duration.text=" "+SearchResList[position].Duration+" Minutes"
         holder.StartDate.text=formatDate(SearchResList[position].StartFrom)
         holder.EndDate.text=formatDate(SearchResList[position].ValidTill)

@@ -48,7 +48,7 @@ class ListShowAdapter(val frag:SavedListBottomSheet,var savedNameList:MutableLis
         }
         val currentItem=savedNameList[position]
         holder.ListName.text=currentItem.TitleName
-        holder.AuthorText.text="by "+currentItem.Author+" • "+currentItem.QuestionIDs.size.toString()+" Questions"
+        holder.AuthorText.text="by "+currentItem.Author.take(6)+" • "+currentItem.QuestionIDs.size.toString()+" Questions"
         if(currentItem.isPrivate){
             holder.isPrivate.setImageResource(R.drawable.ic_lock)
         }

@@ -81,7 +81,7 @@ class SavedNameListAdapter(val fragment:SaveCollectionsFragment,var savedNameLis
             R.drawable.sunset_vibes_gradient,R.drawable.ocean_depths_gradient,R.drawable.forest_mist_gradient,R.drawable.northern_lights_gradient,R.drawable.royal_gold_gradient)
         Log.d("Adapter_Debug", "Binding position: $position, Title: ${savedNameList[position].TitleName}")
        holder.ListName.text=savedNameList[position].TitleName
-        holder.Author.text="by "+savedNameList[position].Author+" • "+savedNameList[position].QuestionIDs.size.toString()+" Questions"
+        holder.Author.text="by "+savedNameList[position].Author.take(6)+" • "+savedNameList[position].QuestionIDs.size.toString()+" Questions"
         if(savedNameList[position].isPrivate){
             holder.isPrivateorGlobal.setImageResource(R.drawable.ic_lock)
         }

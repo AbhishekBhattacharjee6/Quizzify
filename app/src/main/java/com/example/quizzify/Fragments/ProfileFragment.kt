@@ -143,7 +143,7 @@ class ProfileFragment : Fragment() {
                QuestionAttempted.text=item.Questions_Attempted.toString()
                CorrectAnswer.text=item.Correct_Answers.toString()
                Name.text=item.Name
-               UID.text="@"+item.UID
+               UID.text="@"+item.UID.take(6)
                ContestParticipated.text=item.Contest_Participated.toString()
                Achievements.text=item.Achievements.toString()
                Level.text=item.Level.toString()

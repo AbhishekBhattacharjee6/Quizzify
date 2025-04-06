@@ -77,7 +77,7 @@ class PreRegRoomAdapter(val frag:PreRegisteredRooms,var PreRegRoomList:MutableLi
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val PreRegRoomInfo = PreRegRoomList[position]
         holder.roomName.text = PreRegRoomList[position].RoomName
-        holder.roomCreatorName.text = "Created by @ " + PreRegRoomList[position].CreatorUID.take(10)
+        holder.roomCreatorName.text = "Created by @ " + PreRegRoomList[position].CreatorUID.take(6)
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH) + 1
